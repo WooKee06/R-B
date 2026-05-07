@@ -1,0 +1,129 @@
+@use '../../shared/styles/variables' as v;
+@use '../../shared/styles/mixins' as m;
+
+.articles {
+  background: v.$color-bg-secondary;
+
+  &__header {
+    text-align: center;
+    max-width: 700px;
+    margin-inline: auto;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  &__title {
+    @include m.heading-2;
+    color: v.$color-text-primary;
+    margin-bottom: 16px;
+  }
+
+  &__subtitle {
+    @include m.body-text;
+    color: v.$color-text-secondary;
+    font-size: v.$font-size-body-lg;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    @include m.laptop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include m.tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+  }
+}
+
+.articleCard {
+  background: v.$color-bg-card;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-lg;
+  overflow: hidden;
+  transition: all v.$transition-normal;
+  cursor: pointer;
+
+  &:hover {
+    border-color: rgba(108, 92, 231, 0.3);
+    box-shadow: v.$shadow-card;
+  }
+
+  &:hover .articleCard__imageWrap img {
+    transform: scale(1.05);
+  }
+
+  &__imageWrap {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform v.$transition-slow;
+    }
+  }
+
+  &__category {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 6px 14px;
+    border-radius: v.$radius-full;
+    background: rgba(7, 8, 12, 0.7);
+    backdrop-filter: blur(10px);
+    @include m.caption-text;
+    color: v.$color-accent-secondary;
+    font-size: 0.7rem;
+  }
+
+  &__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__meta {
+    display: flex;
+    gap: 8px;
+    font-size: v.$font-size-caption;
+    color: v.$color-text-muted;
+  }
+
+  &__title {
+    font-family: v.$font-display;
+    font-size: v.$font-size-h4;
+    font-weight: v.$font-weight-semibold;
+    color: v.$color-text-primary;
+    line-height: v.$line-height-tight;
+  }
+
+  &__excerpt {
+    @include m.body-text;
+    font-size: v.$font-size-body-sm;
+    color: v.$color-text-secondary;
+    @include m.truncate(2);
+  }
+
+  &__link {
+    font-size: v.$font-size-body-sm;
+    color: v.$color-accent-primary;
+    font-weight: v.$font-weight-medium;
+    transition: color v.$transition-fast;
+  }
+
+  &:hover .articleCard__link {
+    color: v.$color-accent-secondary;
+  }
+}

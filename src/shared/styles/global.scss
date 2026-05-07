@@ -1,0 +1,52 @@
+@use 'variables';
+@use 'mixins';
+
+:root {
+  --color-bg-primary: #{variables.$color-bg-primary};
+  --color-bg-secondary: #{variables.$color-bg-secondary};
+  --color-text-primary: #{variables.$color-text-primary};
+  --color-accent-primary: #{variables.$color-accent-primary};
+  --container-max-width: #{variables.$container-max-width};
+}
+
+body {
+  background-color: variables.$color-bg-primary;
+  color: variables.$color-text-primary;
+}
+
+.section-badge {
+  @include mixins.caption-text;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: variables.$radius-full;
+  background: rgba(108, 92, 231, 0.1);
+  color: variables.$color-accent-secondary;
+  border: 1px solid rgba(108, 92, 231, 0.2);
+  margin-bottom: 20px;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: variables.$color-accent-primary;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.text-gradient {
+  @include mixins.text-gradient;
+}
+
+.glass-card {
+  @include mixins.glass;
+  border-radius: variables.$radius-lg;
+  padding: 32px;
+}

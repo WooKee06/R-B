@@ -1,0 +1,135 @@
+@use '../../shared/styles/variables' as v;
+@use '../../shared/styles/mixins' as m;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: v.$z-header;
+  height: v.$header-height;
+  transition: all v.$transition-normal;
+
+  &[data-scrolled='true'] {
+    height: v.$header-height-scrolled;
+    @include m.glass;
+    border-bottom: 1px solid v.$color-border;
+    box-shadow: v.$shadow-sm;
+  }
+
+  &__inner {
+    @include m.flex-between;
+    height: 100%;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: v.$font-display;
+    font-size: 1.5rem;
+    font-weight: v.$font-weight-bold;
+    color: v.$color-text-primary;
+    z-index: 1;
+  }
+
+  &__logoIcon {
+    color: v.$color-accent-primary;
+    font-size: 1.8rem;
+  }
+
+  &__nav {
+    @include m.laptop {
+      display: none;
+    }
+  }
+
+  &__navList {
+    display: flex;
+    gap: 36px;
+  }
+
+  &__navLink {
+    position: relative;
+    font-size: v.$font-size-body-sm;
+    font-weight: v.$font-weight-medium;
+    color: v.$color-text-secondary;
+    padding: 8px 0;
+    transition: color v.$transition-fast;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: v.$color-accent-gradient;
+      transition: width v.$transition-normal;
+      border-radius: 1px;
+    }
+
+    &:hover, &[data-active='true'] {
+      color: v.$color-text-primary;
+      &::after { width: 100%; }
+    }
+  }
+
+  &__cta {
+    @include m.laptop {
+      display: none;
+    }
+  }
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    z-index: 1;
+
+    @include m.laptop {
+      display: flex;
+    }
+  }
+
+  &__burgerLine {
+    width: 24px;
+    height: 2px;
+    background: v.$color-text-primary;
+    border-radius: 1px;
+    transition: all v.$transition-normal;
+  }
+}
+
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: v.$z-overlay;
+  background: rgba(7, 8, 12, 0.95);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 40px;
+  }
+
+  &__link {
+    font-family: v.$font-display;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: v.$font-weight-bold;
+    color: v.$color-text-secondary;
+    transition: color v.$transition-fast;
+
+    &:hover {
+      color: v.$color-text-primary;
+    }
+  }
+}

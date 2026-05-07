@@ -1,0 +1,161 @@
+@use 'variables' as v;
+
+// ==================== MEDIA QUERIES ====================
+@mixin desktop-xl {
+  @media (min-width: v.$bp-desktop-xl) { @content; }
+}
+
+@mixin desktop {
+  @media (max-width: v.$bp-desktop-xl) { @content; }
+}
+
+@mixin laptop {
+  @media (max-width: v.$bp-laptop) { @content; }
+}
+
+@mixin tablet {
+  @media (max-width: v.$bp-tablet) { @content; }
+}
+
+@mixin mobile {
+  @media (max-width: v.$bp-mobile) { @content; }
+}
+
+@mixin media($breakpoint) {
+  @media (max-width: $breakpoint) { @content; }
+}
+
+// ==================== GLASSMORPHISM ====================
+@mixin glass {
+  background: v.$color-glass-bg;
+  backdrop-filter: blur(v.$color-glass-blur);
+  -webkit-backdrop-filter: blur(v.$color-glass-blur);
+  border: 1px solid v.$color-glass-border;
+}
+
+@mixin glass-light {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+// ==================== TYPOGRAPHY ====================
+@mixin heading-1 {
+  font-family: v.$font-display;
+  font-size: v.$font-size-h1;
+  font-weight: v.$font-weight-bold;
+  line-height: v.$line-height-tight;
+  letter-spacing: -0.02em;
+}
+
+@mixin heading-2 {
+  font-family: v.$font-display;
+  font-size: v.$font-size-h2;
+  font-weight: v.$font-weight-bold;
+  line-height: v.$line-height-tight;
+  letter-spacing: -0.02em;
+}
+
+@mixin heading-3 {
+  font-family: v.$font-display;
+  font-size: v.$font-size-h3;
+  font-weight: v.$font-weight-semibold;
+  line-height: v.$line-height-tight;
+  letter-spacing: -0.01em;
+}
+
+@mixin body-text {
+  font-family: v.$font-primary;
+  font-size: v.$font-size-body;
+  font-weight: v.$font-weight-regular;
+  line-height: v.$line-height-normal;
+}
+
+@mixin caption-text {
+  font-family: v.$font-primary;
+  font-size: v.$font-size-caption;
+  font-weight: v.$font-weight-medium;
+  line-height: v.$line-height-normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+// ==================== LAYOUT ====================
+@mixin container {
+  width: v.$container-width;
+  max-width: v.$container-max-width;
+  margin-inline: auto;
+  padding-inline: v.$container-padding;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin section-padding {
+  padding-block: v.$section-padding;
+}
+
+// ==================== EFFECTS ====================
+@mixin glow-effect($color: v.$color-accent-glow, $blur: 30px) {
+  box-shadow: 0 0 $blur $color;
+}
+
+@mixin gradient-border($gradient: v.$color-accent-gradient) {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: $gradient;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+@mixin card-hover {
+  transition: transform v.$transition-normal, box-shadow v.$transition-normal;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: v.$shadow-lg, v.$shadow-glow;
+  }
+}
+
+// ==================== ANIMATION ====================
+@mixin transition($props: all, $duration: v.$transition-normal) {
+  transition: $props $duration;
+}
+
+@mixin text-gradient($gradient: v.$color-accent-gradient) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ==================== TRUNCATE ====================
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

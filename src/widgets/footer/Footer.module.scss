@@ -1,0 +1,112 @@
+@use '../../shared/styles/variables' as v;
+@use '../../shared/styles/mixins' as m;
+
+.footer {
+  background: v.$color-bg-secondary;
+  border-top: 1px solid v.$color-border;
+  padding-top: clamp(3rem, 5vw, 4rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2rem);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid v.$color-border;
+
+    @include m.laptop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include m.tablet {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  &__brand {
+    @include m.laptop {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: v.$font-display;
+    font-size: 1.3rem;
+    font-weight: v.$font-weight-bold;
+    color: v.$color-text-primary;
+    margin-bottom: 16px;
+  }
+
+  &__logoIcon {
+    color: v.$color-accent-primary;
+  }
+
+  &__description {
+    @include m.body-text;
+    font-size: v.$font-size-body-sm;
+    color: v.$color-text-muted;
+    max-width: 300px;
+    line-height: v.$line-height-relaxed;
+  }
+
+  &__columnTitle {
+    font-family: v.$font-display;
+    font-size: v.$font-size-body;
+    font-weight: v.$font-weight-semibold;
+    color: v.$color-text-primary;
+    margin-bottom: 20px;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__link {
+    font-size: v.$font-size-body-sm;
+    color: v.$color-text-muted;
+    transition: color v.$transition-fast;
+
+    &:hover {
+      color: v.$color-text-primary;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+
+    @include m.tablet {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: 24px;
+  }
+
+  &__socials a {
+    font-size: v.$font-size-body-sm;
+    color: v.$color-text-muted;
+    transition: color v.$transition-fast;
+
+    &:hover {
+      color: v.$color-accent-primary;
+    }
+  }
+
+  &__bottom p {
+    font-size: v.$font-size-caption;
+    color: v.$color-text-muted;
+  }
+}

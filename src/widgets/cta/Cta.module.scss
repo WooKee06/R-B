@@ -1,0 +1,47 @@
+@use '../../shared/styles/variables' as v;
+@use '../../shared/styles/mixins' as m;
+
+.cta {
+  &__inner {
+    text-align: center;
+    max-width: 800px;
+    margin-inline: auto;
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem);
+    @include m.glass;
+    border-radius: v.$radius-xl;
+    border: 1px solid v.$color-glass-border;
+  }
+
+  &__badge {
+    display: inline-block;
+    @include m.caption-text;
+    color: v.$color-accent-secondary;
+    margin-bottom: 20px;
+    padding: 6px 16px;
+    border-radius: v.$radius-full;
+    background: rgba(108, 92, 231, 0.1);
+    border: 1px solid rgba(108, 92, 231, 0.2);
+  }
+
+  &__title {
+    @include m.heading-2;
+    color: v.$color-text-primary;
+    margin-bottom: 16px;
+  }
+
+  &__subtitle {
+    @include m.body-text;
+    color: v.$color-text-secondary;
+    font-size: v.$font-size-body-lg;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

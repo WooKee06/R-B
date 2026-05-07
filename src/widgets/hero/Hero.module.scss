@@ -1,0 +1,153 @@
+@use '../../shared/styles/variables' as v;
+@use '../../shared/styles/mixins' as m;
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: v.$header-height;
+  overflow: hidden;
+
+  &__glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(108, 92, 231, 0.15) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    animation: glow-float 8s ease-in-out infinite;
+  }
+
+  &__glowSecondary {
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(162, 155, 254, 0.1) 0%, transparent 70%);
+    filter: blur(100px);
+    pointer-events: none;
+    animation: glow-float 10s ease-in-out infinite reverse;
+  }
+
+  &__content {
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    @include m.caption-text;
+    color: v.$color-accent-secondary;
+    margin-bottom: 24px;
+    padding: 8px 20px;
+    border-radius: v.$radius-full;
+    background: rgba(108, 92, 231, 0.1);
+    border: 1px solid rgba(108, 92, 231, 0.2);
+  }
+
+  &__badgeDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: v.$color-accent-primary;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  &__title {
+    @include m.heading-1;
+    color: v.$color-text-primary;
+    margin-bottom: 24px;
+
+    @include m.tablet {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+  }
+
+  &__titleAccent {
+    @include m.text-gradient;
+  }
+
+  &__subtitle {
+    @include m.body-text;
+    font-size: v.$font-size-body-lg;
+    color: v.$color-text-secondary;
+    max-width: 600px;
+    margin-bottom: 40px;
+    line-height: v.$line-height-relaxed;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+  }
+
+  &__stats {
+    display: flex;
+    gap: 48px;
+
+    @include m.tablet {
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    @include m.mobile {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__statValue {
+    font-family: v.$font-display;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: v.$font-weight-bold;
+    color: v.$color-text-primary;
+  }
+
+  &__statLabel {
+    font-size: v.$font-size-body-sm;
+    color: v.$color-text-muted;
+    font-weight: v.$font-weight-medium;
+  }
+
+  &__scrollHint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__scrollLine {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, v.$color-accent-primary, transparent);
+  }
+}
+
+@keyframes glow-float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, 30px); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
