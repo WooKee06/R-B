@@ -1,9 +1,14 @@
-import { type ButtonHTMLAttributes, forwardRef } from 'react';
-import { motion, type MotionProps } from 'framer-motion';
-import styles from './Button.module.scss';
+import { type ButtonHTMLAttributes, forwardRef } from "react";
+import { motion, type MotionProps } from "framer-motion";
+import styles from "./Button.module.scss";
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'glass';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "ghost"
+  | "glass"
+  | "border";
+export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -14,16 +19,26 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const ButtonInner = (
-  { variant = 'primary', size = 'md', children, className, asMotion, fullWidth, ...props }: ButtonProps,
-  ref: React.ForwardedRef<HTMLButtonElement>
+  {
+    variant = "primary",
+    size = "md",
+    children,
+    className,
+    asMotion,
+    fullWidth,
+    ...props
+  }: ButtonProps,
+  ref: React.ForwardedRef<HTMLButtonElement>,
 ) => {
   const classNames = [
     styles.button,
     styles[`button--${variant}`],
     styles[`button--${size}`],
-    fullWidth && styles['button--fullWidth'],
+    fullWidth && styles["button--fullWidth"],
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   if (asMotion) {
     return (
@@ -32,7 +47,7 @@ const ButtonInner = (
         className={classNames}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
         {...(props as MotionProps)}
       >
         <span className={styles.button__content}>{children}</span>

@@ -1,0 +1,56 @@
+.glassContainer {
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+  height: fit-content;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  &.btn {
+    padding: 20px 74px;
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #ffffff;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.glassContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 30px;
+  -webkit-box-shadow:
+    inset 2px 2px 0px -2px rgb(255, 255, 255),
+    inset 0 0 3px 1px rgba(255, 255, 255, 0.157);
+  box-shadow:
+    inset 2px 2px 0px -2px rgb(255, 255, 255),
+    inset 0 0 3px 1px rgba(255, 255, 255, 0.141);
+}
+
+.glassContainer::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: 30px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(4px);
+  -webkit-filter: url(#container-glass);
+  filter: url(#container-glass);
+  overflow: hidden;
+  isolation: isolate;
+}

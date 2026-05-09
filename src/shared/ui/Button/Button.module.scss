@@ -1,5 +1,5 @@
-@use '../../styles/variables' as v;
-@use '../../styles/mixins' as m;
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
 
 .button {
   position: relative;
@@ -7,9 +7,9 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-family: v.$font-primary;
+  font-family: "Montserrat";
   font-weight: v.$font-weight-medium;
-  border-radius: v.$radius-full;
+  border-radius: v.$radius-lg;
   cursor: pointer;
   overflow: hidden;
   transition: all v.$transition-normal;
@@ -22,7 +22,7 @@
     z-index: 1;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 30px;
   }
 
   &__glow {
@@ -33,10 +33,10 @@
     border-radius: inherit;
   }
 
-  // Variants
   &--primary {
-    background: v.$color-accent-gradient;
-    color: #fff;
+    background: #fff;
+    border-radius: 20px;
+    color: #000000;
     padding: 14px 32px;
     box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
 
@@ -44,7 +44,11 @@
       box-shadow: 0 6px 30px rgba(108, 92, 231, 0.5);
       .button__glow {
         opacity: 1;
-        background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          transparent 100%
+        );
       }
     }
   }
@@ -81,7 +85,18 @@
     }
   }
 
-  // Sizes
+  &--border {
+    color: v.$color-text-primary;
+    padding: 14px 62px !important;
+    background: none;
+    border: 1px solid #fff;
+    font-weight: 400;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+
   &--sm {
     padding: 10px 20px;
     font-size: v.$font-size-body-sm;

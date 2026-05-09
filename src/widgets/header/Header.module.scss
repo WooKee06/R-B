@@ -55,7 +55,8 @@
   &__navLink {
     position: relative;
     font-size: v.$font-size-body-sm;
-    font-weight: v.$font-weight-medium;
+    font-weight: v.$font-weight-light;
+    font-family: v.$font-display;
     color: v.$color-text-secondary;
     padding: 8px 0;
     transition: color v.$transition-fast;

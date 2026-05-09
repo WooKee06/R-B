@@ -1,5 +1,5 @@
-@use '../../shared/styles/variables' as v;
-@use '../../shared/styles/mixins' as m;
+@use "../../shared/styles/variables" as v;
+@use "../../shared/styles/mixins" as m;
 
 .hero {
   position: relative;
@@ -9,34 +9,239 @@
   padding-top: v.$header-height;
   overflow: hidden;
 
-  &__glow {
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(108, 92, 231, 0.15) 0%, transparent 70%);
-    filter: blur(80px);
-    pointer-events: none;
-    animation: glow-float 8s ease-in-out infinite;
+  .glassInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    width: max-content;
+
+    ul {
+      display: flex;
+      align-items: center;
+
+      li {
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        background-color: red;
+        border: 1px solid #000;
+        margin-left: 0;
+
+        &.cimage {
+          margin-left: -10px;
+        }
+      }
+
+      small {
+        font-style: normal;
+        font-family: v.$font-primary;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 39px;
+        color: #ffffff;
+        margin-left: 10px;
+      }
+    }
+
+    span {
+      font-family: v.$font-primary;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #ffffff;
+      opacity: 0.5;
+    }
+
+    h3 {
+      width: 248px;
+      height: 23px;
+      font-family: v.$font-primary;
+      font-style: normal;
+      font-size: 18px;
+      line-height: 23px;
+      font-weight: 400;
+      color: #ffffff;
+      width: max-content;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      > div {
+        width: 10px;
+        height: 10px;
+        border-radius: 6px;
+        background-color: rgb(255, 166, 0);
+      }
+    }
   }
 
-  &__glowSecondary {
-    position: absolute;
-    bottom: -10%;
-    left: -5%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(162, 155, 254, 0.1) 0%, transparent 70%);
-    filter: blur(100px);
-    pointer-events: none;
-    animation: glow-float 10s ease-in-out infinite reverse;
+  @include m.mobile {
+    .glassInfo {
+      span {
+        font-size: 10px;
+        line-height: 14px;
+      }
+
+      h3 {
+        font-size: 13px;
+        line-height: 18px;
+      }
+
+      ul {
+        small {
+          font-size: 14px;
+          line-height: 20px;
+        }
+
+        li {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
   }
 
   &__content {
-    max-width: 800px;
     position: relative;
+    margin: 0 auto;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  &__decorTopLeft {
+    position: absolute;
+    top: -100px;
+    left: -70px;
+    pointer-events: none;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 397.56px;
+    height: 407.05px;
+
+    @include m.tablet {
+      width: 260px;
+      height: 270px;
+      top: -50px;
+      left: -50px;
+    }
+
+    @include m.mobile {
+      width: 180px;
+      height: 190px;
+      top: -60px;
+      left: -60px;
+      opacity: 0.7;
+    }
+  }
+
+  &__decorTopLeftContent {
+    @include m.mobile {
+      transform: scale(0.6);
+      transform-origin: top left;
+      right: 0 !important;
+      top: 0 !important;
+    }
+  }
+
+  &__decorBottomRight {
+    position: absolute;
+    bottom: -70px;
+    right: -120px;
+    width: 400px;
+    height: 404px;
+    pointer-events: none;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    @include m.tablet {
+      width: 260px;
+      height: 260px;
+      bottom: -50px;
+      right: -50px;
+    }
+
+    @include m.mobile {
+      width: 160px;
+      height: 160px;
+      bottom: -30px;
+      right: -30px;
+      opacity: 0.7;
+    }
+  }
+
+  &__decorBottomRightContent {
+    @include m.mobile {
+      transform: scale(0.5);
+      transform-origin: bottom right;
+      left: 0 !important;
+      bottom: 0 !important;
+    }
+  }
+
+  .title {
+    display: flex;
+    gap: 0;
+    flex-direction: column;
+
+    h2 {
+      font-family: "Plus Jakarta Sans";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 116px;
+      line-height: 136px;
+      leading-trim: both;
+      text-edge: cap;
+      text-align: center;
+      letter-spacing: -0.03em;
+      background: linear-gradient(
+        180deg,
+        #ffffff 50%,
+        rgb(255 255 255 / 0%) 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+
+      &:last-child {
+        margin-top: -50px;
+      }
+
+      @include m.laptop {
+        font-size: clamp(3rem, 10vw, 5rem);
+        line-height: 1.1;
+
+        &:last-child {
+          margin-top: -30px;
+        }
+      }
+
+      @include m.tablet {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        line-height: 1.1;
+
+        &:last-child {
+          margin-top: -20px;
+        }
+      }
+
+      @include m.mobile {
+        font-size: clamp(1.8rem, 9vw, 2.8rem);
+        line-height: 1.1;
+
+        &:last-child {
+          margin-top: -10px;
+        }
+      }
+    }
   }
 
   &__badge {
@@ -63,7 +268,6 @@
   &__title {
     @include m.heading-1;
     color: v.$color-text-primary;
-    margin-bottom: 24px;
 
     @include m.tablet {
       font-size: clamp(2.5rem, 8vw, 4rem);
@@ -75,12 +279,27 @@
   }
 
   &__subtitle {
-    @include m.body-text;
-    font-size: v.$font-size-body-lg;
-    color: v.$color-text-secondary;
-    max-width: 600px;
-    margin-bottom: 40px;
-    line-height: v.$line-height-relaxed;
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 180%;
+    leading-trim: both;
+    text-edge: cap;
+    text-align: center;
+    width: 50%;
+    color: #878c91;
+    flex: none;
+    flex-grow: 0;
+
+    @include m.tablet {
+      width: 80%;
+    }
+
+    @include m.mobile {
+      width: 100%;
+      padding-inline: 16px;
+    }
   }
 
   &__actions {
@@ -88,6 +307,18 @@
     gap: 16px;
     margin-bottom: 64px;
     flex-wrap: wrap;
+    justify-content: center;
+
+    @include m.mobile {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding-inline: 16px;
+
+      > * {
+        width: 100%;
+      }
+    }
   }
 
   &__stats {
@@ -138,16 +369,30 @@
   &__scrollLine {
     width: 1px;
     height: 40px;
-    background: linear-gradient(to bottom, v.$color-accent-primary, transparent);
+    background: linear-gradient(
+      to bottom,
+      v.$color-accent-primary,
+      transparent
+    );
   }
 }
 
 @keyframes glow-float {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-30px, 30px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, 30px);
+  }
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }

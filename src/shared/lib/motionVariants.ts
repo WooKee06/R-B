@@ -1,4 +1,4 @@
-import { type Variants } from 'framer-motion';
+import { type Variants } from "framer-motion";
 
 export const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -15,6 +15,68 @@ export const fadeInDown: Variants = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } as const,
+  },
+};
+
+export const decorTopLeftVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -100,
+    y: -100,
+    rotate: -35,
+    scale: 0.6,
+    filter: "blur(10px)",
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    rotate: 0,
+    scale: 1,
+    filter: "blur(0px)",
+
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+      mass: 0.5,
+      delay: 0.1,
+    },
+  },
+};
+
+export const decorBottomRightVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -100,
+    y: -100,
+    rotate: 15,
+    scale: 0.6,
+    filter: "blur(10px)",
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    filter: "blur(0px)",
+    rotate: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+      mass: 0.5,
+      delay: 0.3,
+    },
+  },
+};
+
+export const scrollHintVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: 1.2, duration: 0.6 },
   },
 };
 
@@ -69,7 +131,7 @@ export const cardHover: Variants = {
   hover: {
     scale: 1.02,
     y: -8,
-    transition: { type: 'spring', stiffness: 300, damping: 20 },
+    transition: { type: "spring", stiffness: 300, damping: 20 },
   },
 };
 
@@ -77,6 +139,6 @@ export const glowPulse: Variants = {
   initial: { opacity: 0.4 },
   animate: {
     opacity: [0.4, 0.8, 0.4],
-    transition: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
+    transition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
   },
 };

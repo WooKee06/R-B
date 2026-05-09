@@ -1,38 +1,29 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { observer } from 'mobx-react-lite';
-import { useStores } from '../../app/providers/MobxProvider';
-import { Container } from '../../shared/ui/Container';
-import { Button } from '../../shared/ui/Button';
-import { useScroll } from '../../shared/hooks';
-import styles from './Header.module.scss';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { observer } from "mobx-react-lite";
+import { useStores } from "../../app/providers/MobxProvider";
+import { Container } from "../../shared/ui/Container";
+import { Button } from "../../shared/ui/Button";
+import { useScroll } from "../../shared/hooks";
+import styles from "./Header.module.scss";
+import Logo from "../../../public/logo.png";
+import {
+  mobileItemVariants,
+  mobileMenuVariants,
+} from "@/shared/ui/BasicAnimation/BasicAnimation";
 
 const navLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Articles', href: '#articles' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: "Services", href: "#services" },
+  { label: "Agency", href: "#portfolio" },
+  { label: "Case study", href: "#articles" },
+  { label: "Resources", href: "#testimonials" },
+  { label: "Contact", href: "#contact" },
 ];
-
-const mobileMenuVariants = {
-  closed: { opacity: 0, y: -20 },
-  open: {
-    opacity: 1,
-    y: 0,
-    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
-  },
-};
-
-const mobileItemVariants = {
-  closed: { opacity: 0, x: -20 },
-  open: { opacity: 1, x: 0 },
-};
 
 export const Header = observer(() => {
   const { uiStore } = useStores();
   const scrolled = useScroll();
-  const [activeLink, setActiveLink] = useState('');
+  const [activeLink, setActiveLink] = useState("");
 
   return (
     <>
@@ -43,8 +34,7 @@ export const Header = observer(() => {
         <Container>
           <div className={styles.header__inner}>
             <a href="#" className={styles.header__logo}>
-              <span className={styles.header__logoIcon}>◈</span>
-              <span className={styles.header__logoText}>Nexus</span>
+              <img src={Logo} alt="" />
             </a>
 
             <nav className={styles.header__nav} aria-label="Main navigation">
@@ -64,13 +54,13 @@ export const Header = observer(() => {
               </ul>
             </nav>
 
-            <Button variant="primary" size="sm" className={styles.header__cta}>
-              Get in Touch
+            <Button variant="border" size="sm" className={styles.header__cta}>
+              Connect
             </Button>
 
             <button
               className={styles.header__burger}
-              aria-label={uiStore.isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={uiStore.isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={uiStore.isMobileMenuOpen}
               onClick={uiStore.toggleMobileMenu}
             >

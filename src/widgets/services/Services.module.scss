@@ -1,12 +1,9 @@
-@use '../../shared/styles/variables' as v;
-@use '../../shared/styles/mixins' as m;
+@use "../../shared/styles/variables" as v;
+@use "../../shared/styles/mixins" as m;
 
 .services {
-  background: v.$color-bg-secondary;
-
   &__header {
     text-align: center;
-    max-width: 700px;
     margin-inline: auto;
     margin-bottom: clamp(3rem, 6vw, 5rem);
   }
@@ -15,18 +12,24 @@
     @include m.heading-2;
     color: v.$color-text-primary;
     margin-bottom: 16px;
+    font-weight: 400;
+    font-family: v.$font-primary;
+    font-size: v.$font-size-h1;
   }
 
   &__subtitle {
     @include m.body-text;
+    font-weight: 300;
     color: v.$color-text-secondary;
     font-size: v.$font-size-body-lg;
+    font-family: v.$font-primary;
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    row-gap: 60px;
 
     @include m.laptop {
       grid-template-columns: repeat(2, 1fr);
@@ -40,25 +43,37 @@
 
 .serviceCard {
   position: relative;
-  border-radius: v.$radius-lg;
-  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+  &:nth-child(3n) {
+    border-right: none;
+  }
+
+  @include m.laptop {
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+    &:nth-child(2n) {
+      border-right: none;
+    }
+  }
+
+  @include m.tablet {
+    border-right: none;
+  }
 
   &__inner {
     height: 100%;
     padding: 36px;
-    background: v.$color-bg-card;
-    border: 1px solid v.$color-border;
-    border-radius: v.$radius-lg;
     transition: all v.$transition-normal;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
     cursor: default;
   }
 
   &:hover .serviceCard__inner {
     border-color: rgba(108, 92, 231, 0.3);
-    box-shadow: v.$shadow-card, 0 0 30px rgba(108, 92, 231, 0.1);
   }
 
   &:hover .serviceCard__arrow {
@@ -80,13 +95,52 @@
   &__title {
     @include m.heading-3;
     color: v.$color-text-primary;
+    text-align: center;
     font-size: v.$font-size-h4;
+  }
+
+  &__btn {
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #1f1f1f;
+    border-radius: 190px;
+    gap: 30px;
+    cursor: pointer;
+    transition: all v.$transition-normal;
+
+    span {
+      padding-left: 20px;
+      transition: all v.$transition-normal;
+    }
+
+    svg {
+      transition: transform v.$transition-normal;
+    }
+
+    &:hover {
+      border-color: v.$color-accent-primary;
+      background: rgba(108, 92, 231, 0.1);
+
+      span {
+        color: v.$color-accent-secondary;
+      }
+
+      svg {
+        transform: translateX(4px);
+      }
+
+      svg rect {
+        fill: v.$color-accent-primary;
+      }
+    }
   }
 
   &__description {
     @include m.body-text;
     color: v.$color-text-secondary;
     font-size: v.$font-size-body-sm;
+    text-align: center;
     flex: 1;
   }
 
