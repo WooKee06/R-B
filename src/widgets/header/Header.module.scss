@@ -1,5 +1,5 @@
-@use '../../shared/styles/variables' as v;
-@use '../../shared/styles/mixins' as m;
+@use "../../shared/styles/variables" as v;
+@use "../../shared/styles/mixins" as m;
 
 .header {
   position: fixed;
@@ -9,12 +9,15 @@
   z-index: v.$z-header;
   height: v.$header-height;
   transition: all v.$transition-normal;
+  padding: 20px 0;
 
-  &[data-scrolled='true'] {
-    height: v.$header-height-scrolled;
+  &[data-scrolled="true"] {
+    height: max-content;
     @include m.glass;
     border-bottom: 1px solid v.$color-border;
     box-shadow: v.$shadow-sm;
+    margin: 10px;
+    border-radius: 20px;
   }
 
   &__inner {
@@ -58,7 +61,7 @@
     transition: color v.$transition-fast;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
@@ -69,9 +72,12 @@
       border-radius: 1px;
     }
 
-    &:hover, &[data-active='true'] {
+    &:hover,
+    &[data-active="true"] {
       color: v.$color-text-primary;
-      &::after { width: 100%; }
+      &::after {
+        width: 100%;
+      }
     }
   }
 
