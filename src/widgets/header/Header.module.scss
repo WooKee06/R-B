@@ -23,6 +23,10 @@
   &__inner {
     @include m.flex-between;
     height: 100%;
+
+    @include m.mobile {
+      padding: 0px 20px;
+    }
   }
 
   &__logo {
@@ -131,7 +135,7 @@
   &__link {
     font-family: v.$font-display;
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: v.$font-weight-bold;
+    font-weight: v.$font-weight-medium;
     color: v.$color-text-secondary;
     transition: color v.$transition-fast;
 

@@ -13,10 +13,10 @@ import {
 } from "@/shared/ui/BasicAnimation/BasicAnimation";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
   { label: "Agency", href: "#portfolio" },
+  { label: "Services", href: "#services" },
   { label: "Case study", href: "#articles" },
-  { label: "Resources", href: "#testimonials" },
+  { label: "Reviews", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
 

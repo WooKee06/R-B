@@ -1,46 +1,141 @@
-@use '../../shared/styles/variables' as v;
-@use '../../shared/styles/mixins' as m;
+@use "../../shared/styles/variables" as v;
+@use "../../shared/styles/mixins" as m;
 
 .testimonials {
+  position: relative;
   &__header {
-    text-align: center;
-    margin-bottom: clamp(3rem, 6vw, 5rem);
+    margin-bottom: clamp(3rem, 2vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @include m.tablet {
+      padding-inline: 16px;
+    }
+  }
+
+  .aboutUsBg {
+    position: absolute;
+    right: 20%;
+    top: 70px;
+    z-index: 0;
+
+    @include m.tablet {
+      display: none;
+    }
   }
 
   &__title {
     @include m.heading-2;
     color: v.$color-text-primary;
-  }
+    text-align: left;
+    font-family: v.$font-primary;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 68px;
+    line-height: 75px;
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-
-    @include m.laptop {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    background: linear-gradient(
+      91.16deg,
+      #ffd695 1.74%,
+      #ffffff 43.71%,
+      #ffffff 61.62%,
+      #ffda9f 102.48%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 
     @include m.tablet {
-      grid-template-columns: 1fr;
+      font-size: clamp(2rem, 8vw, 3rem);
+      line-height: 1.2;
+    }
+  }
+
+  &__subtitle {
+    @include m.body-text;
+    color: v.$color-text-secondary;
+    font-size: v.$font-size-body-lg;
+    text-align: left;
+    font-family: v.$font-primary;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 180%;
+    color: v.$color-accent-secondary;
+
+    @include m.tablet {
+      font-size: 14px;
+      line-height: 24px;
     }
   }
 }
 
+.sliderWrapper {
+  position: relative;
+
+  :global {
+    .swiper {
+      overflow: hidden;
+      padding: 4px 2px;
+    }
+
+    .swiper-button-disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  }
+}
+
+.swiperBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+  left: -24px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  @include m.tablet {
+    display: none;
+  }
+}
+
+.swiperBtnNext {
+  left: auto;
+  right: -24px;
+}
+
+.testimonialGlass {
+  @include m.mobile {
+    padding: 20px !important;
+  }
+}
+
 .testimonialCard {
-  padding: 36px;
-  background: v.$color-bg-card;
-  border: 1px solid v.$color-border;
-  border-radius: v.$radius-lg;
   display: flex;
   flex-direction: column;
   gap: 28px;
   transition: all v.$transition-normal;
-
-  &:hover {
-    border-color: rgba(108, 92, 231, 0.2);
-    box-shadow: v.$shadow-card;
-  }
+  position: relative;
+  z-index: 5;
 
   &__content {
     flex: 1;
@@ -64,9 +159,13 @@
   &__author {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 14px;
-    padding-top: 24px;
-    border-top: 1px solid v.$color-border;
+    section {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
 
     img {
       width: 48px;

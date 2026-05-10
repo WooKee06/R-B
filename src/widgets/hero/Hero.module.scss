@@ -112,6 +112,11 @@
     flex-direction: column;
     align-items: center;
     gap: 30px;
+
+    @include m.mobile {
+      gap: 20px;
+      padding-inline: 16px;
+    }
   }
 
   &__decorTopLeft {
@@ -135,18 +140,19 @@
     @include m.mobile {
       width: 180px;
       height: 190px;
-      top: -60px;
-      left: -60px;
+      top: -160px;
+      left: 10px;
       opacity: 0.7;
     }
   }
 
   &__decorTopLeftContent {
     @include m.mobile {
-      transform: scale(0.6);
+      transform: scale(0.8);
       transform-origin: top left;
-      right: 0 !important;
-      top: 0 !important;
+      right: -90px !important;
+      top: 95px !important;
+      padding: 15px 30px !important;
     }
   }
 
@@ -171,18 +177,18 @@
     @include m.mobile {
       width: 160px;
       height: 160px;
-      bottom: -30px;
-      right: -30px;
+      bottom: -70px;
+      right: 0px;
       opacity: 0.7;
     }
   }
 
   &__decorBottomRightContent {
     @include m.mobile {
-      transform: scale(0.5);
+      transform: scale(0.8);
       transform-origin: bottom right;
-      left: 0 !important;
-      bottom: 0 !important;
+      left: -150px !important;
+      bottom: -50px !important;
     }
   }
 

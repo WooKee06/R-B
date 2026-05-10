@@ -1,15 +1,20 @@
-@use '../../shared/styles/variables' as v;
-@use '../../shared/styles/mixins' as m;
+@use "../../shared/styles/variables" as v;
+@use "../../shared/styles/mixins" as m;
 
 .cta {
   &__inner {
     text-align: center;
-    max-width: 800px;
+    max-width: 1200px;
     margin-inline: auto;
     padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem);
     @include m.glass;
     border-radius: v.$radius-xl;
     border: 1px solid v.$color-glass-border;
+
+    @include m.mobile {
+      padding: 2rem 1.25rem;
+      border-radius: v.$radius-lg;
+    }
   }
 
   &__badge {
@@ -24,9 +29,16 @@
   }
 
   &__title {
-    @include m.heading-2;
+    @include m.heading-3;
     color: v.$color-text-primary;
     margin-bottom: 16px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #f0f1f5;
+    margin-bottom: 16px;
+    font-weight: 400;
+    font-family: v.$font-primary;
+    font-size: clamp(2.5rem, 5vw, 4rem);
   }
 
   &__subtitle {

@@ -1,8 +1,7 @@
-@use '../../shared/styles/variables' as v;
-@use '../../shared/styles/mixins' as m;
+@use "../../shared/styles/variables" as v;
+@use "../../shared/styles/mixins" as m;
 
 .footer {
-  background: v.$color-bg-secondary;
   border-top: 1px solid v.$color-border;
   padding-top: clamp(3rem, 5vw, 4rem);
   padding-bottom: clamp(1.5rem, 3vw, 2rem);
@@ -51,6 +50,10 @@
     color: v.$color-text-muted;
     max-width: 300px;
     line-height: v.$line-height-relaxed;
+
+    @include m.mobile {
+      max-width: 100%;
+    }
   }
 
   &__columnTitle {
@@ -71,6 +74,7 @@
     font-size: v.$font-size-body-sm;
     color: v.$color-text-muted;
     transition: color v.$transition-fast;
+    font-family: v.$font-primary;
 
     &:hover {
       color: v.$color-text-primary;

@@ -1,28 +1,40 @@
-@use 'variables' as v;
+@use "variables" as v;
 
 // ==================== MEDIA QUERIES ====================
 @mixin desktop-xl {
-  @media (min-width: v.$bp-desktop-xl) { @content; }
+  @media (min-width: v.$bp-desktop-xl) {
+    @content;
+  }
 }
 
 @mixin desktop {
-  @media (max-width: v.$bp-desktop-xl) { @content; }
+  @media (max-width: v.$bp-desktop-xl) {
+    @content;
+  }
 }
 
 @mixin laptop {
-  @media (max-width: v.$bp-laptop) { @content; }
+  @media (max-width: v.$bp-laptop) {
+    @content;
+  }
 }
 
 @mixin tablet {
-  @media (max-width: v.$bp-tablet) { @content; }
+  @media (max-width: v.$bp-tablet) {
+    @content;
+  }
 }
 
 @mixin mobile {
-  @media (max-width: v.$bp-mobile) { @content; }
+  @media (max-width: v.$bp-mobile) {
+    @content;
+  }
 }
 
 @mixin media($breakpoint) {
-  @media (max-width: $breakpoint) { @content; }
+  @media (max-width: $breakpoint) {
+    @content;
+  }
 }
 
 // ==================== GLASSMORPHISM ====================
@@ -113,13 +125,13 @@
 @mixin gradient-border($gradient: v.$color-accent-gradient) {
   position: relative;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 1px;
     background: $gradient;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    // -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -127,7 +139,9 @@
 }
 
 @mixin card-hover {
-  transition: transform v.$transition-normal, box-shadow v.$transition-normal;
+  transition:
+    transform v.$transition-normal,
+    box-shadow v.$transition-normal;
   &:hover {
     transform: translateY(-4px);
     box-shadow: v.$shadow-lg, v.$shadow-glow;
