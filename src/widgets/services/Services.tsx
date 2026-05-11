@@ -12,37 +12,37 @@ interface Service {
 
 const services: Service[] = [
   {
-    icon: "../../../public/Servise/Icon Container.svg",
+    icon: "./public/Servise/Icon Container.svg",
     title: "Expertise That Drives Results",
     description:
       "Our team of seasoned professionals brings years of experience and deep industry expertise to every project. We don’t just follow trends — we set them.",
   },
   {
-    icon: "../../../public/Servise/Icon Container-1.svg",
+    icon: "./public/Servise/Icon Container-1.svg",
     title: "Tailored Business Solutions",
     description:
       "We understand that every business is unique. That’s why our solutions are fully customized to your goals, audience, and market reality.",
   },
   {
-    icon: "../../../public/Servise/Icon Container-2.svg",
+    icon: "./public/Servise/Icon Container-2.svg",
     title: "Cutting-Edge Web Design",
     description:
       "Leave a lasting impression on your audience with our top‑notch web design services. Modern, fast, and built to convert.",
   },
   {
-    icon: "../../../public/Servise/Icon Container-3.svg",
+    icon: "./public/Servise/Icon Container-3.svg",
     title: "Mobile-First Approach",
     description:
       "In today’s mobile‑centric world, we prioritize responsive, mobile‑first design to ensure your website looks and works perfectly everywhere.",
   },
   {
-    icon: "../../../public/Servise/Icon Container-4.svg",
+    icon: "./public/Servise/Icon Container-4.svg",
     title: "Marketing Strategies",
     description:
       "Our data‑driven marketing strategies allow us to target the right audience with precision — maximizing reach, engagement, and ROI.",
   },
   {
-    icon: "../../../public/Servise/Icon Container-5.svg",
+    icon: "./public/Servise/Icon Container-5.svg",
     title: "Search Engine Optimization",
     description:
       "Boost your online visibility with our expert SEO techniques. From local SEO to global reach, we get you found.",

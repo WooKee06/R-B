@@ -47,7 +47,7 @@
     margin-bottom: 24px;
 
     &::before {
-      content: '';
+      content: "";
       width: 6px;
       height: 6px;
       border-radius: 50%;
@@ -101,7 +101,7 @@
   &__statValue {
     font-family: $font-display;
     font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-medium;
     background: $color-accent-gradient;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -141,7 +141,7 @@
       color: $color-text-primary;
     }
 
-    &[data-active='true'] {
+    &[data-active="true"] {
       background: rgba(231, 206, 92, 0.1);
       border-color: $color-accent-primary;
       color: $color-accent-primary;
@@ -527,4 +527,3 @@
     flex-wrap: wrap;
   }
 }
-

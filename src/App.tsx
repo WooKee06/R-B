@@ -1,27 +1,19 @@
-import { observer } from 'mobx-react-lite';
-import { MobxProvider, useStores } from './app/providers/MobxProvider';
-import { HomePage } from './pages/home/HomePage';
-import { CaseStudyPage } from './pages/case-study/CaseStudyPage';
-import { ContactPage } from './pages/contact/ContactPage';
-import './shared/styles/reset.scss';
-import './shared/styles/global.scss';
-
-const PageRouter = observer(() => {
-  const { uiStore } = useStores();
-  switch (uiStore.currentPage) {
-    case 'case-study':
-      return <CaseStudyPage />;
-    case 'contact':
-      return <ContactPage />;
-    default:
-      return <HomePage />;
-  }
-});
+import { Route, Routes } from "react-router-dom";
+import { MobxProvider } from "./app/providers/MobxProvider";
+import { HomePage } from "./pages/home/HomePage";
+import { CaseStudyPage } from "./pages/case-study/CaseStudyPage";
+import { ContactPage } from "./pages/contact/ContactPage";
+import "./shared/styles/reset.scss";
+import "./shared/styles/global.scss";
 
 export const App = () => {
   return (
     <MobxProvider>
-      <PageRouter />
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="case-study" element={<CaseStudyPage />} />
+        <Route path="contact" element={<ContactPage />} />
+      </Routes>
     </MobxProvider>
   );
 };

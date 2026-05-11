@@ -1,17 +1,58 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useStores } from '../../app/providers/MobxProvider';
-import { Header } from '../../widgets/header';
-import { Footer } from '../../widgets/footer';
-import { Container } from '../../shared/ui/Container';
-import { Section } from '../../shared/ui/Section';
-import { Button } from '../../shared/ui/Button';
-import {
-  fadeInUp,
-  staggerContainer,
-  staggerItem,
-} from '../../shared/lib';
-import styles from './CaseStudyPage.module.scss';
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, animate, useInView } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { Header } from "../../widgets/header";
+import { Footer } from "../../widgets/footer";
+import { Container } from "../../shared/ui/Container";
+import { Section } from "../../shared/ui/Section";
+import { Button } from "../../shared/ui/Button";
+import { fadeInUp, staggerContainer, staggerItem } from "../../shared/lib";
+import styles from "./CaseStudyPage.module.scss";
+
+const AnimatedCounter = ({
+  value,
+  className,
+}: {
+  value: string;
+  className?: string;
+}) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true });
+  const [displayValue, setDisplayValue] = useState("0");
+
+  const match = value.match(/^([+-]?\d*\.?\d+)(.*)$/);
+  const targetNumber = match ? parseFloat(match[1]) : 0;
+  const suffix = match ? match[2] : "";
+  const hasLeadingSign =
+    match?.[1]?.startsWith("+") || match?.[1]?.startsWith("-") || false;
+  const sign = hasLeadingSign ? match![1][0] : "";
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const controls = animate(0, targetNumber, {
+      duration: 2,
+      ease: "easeOut",
+      onUpdate(latest) {
+        setDisplayValue(
+          Number.isInteger(targetNumber)
+            ? Math.round(latest).toString()
+            : latest.toFixed(1),
+        );
+      },
+    });
+
+    return () => controls.stop();
+  }, [isInView, targetNumber]);
+
+  return (
+    <span ref={ref} className={className}>
+      {sign}
+      {displayValue}
+      {suffix}
+    </span>
+  );
+};
 
 interface CaseStudy {
   id: number;
@@ -29,142 +70,150 @@ interface CaseStudy {
 const caseStudies: CaseStudy[] = [
   {
     id: 1,
-    client: 'Luxe Dining',
-    title: 'Brand Identity & Digital Campaign for a Premium Restaurant Chain',
-    category: 'Branding',
-    tags: ['Brand Identity', 'Web Design', 'SMM'],
+    client: "Luxe Dining",
+    title: "Brand Identity & Digital Campaign for a Premium Restaurant Chain",
+    category: "Branding",
+    tags: ["Brand Identity", "Web Design", "SMM"],
     challenge:
-      'A high-end restaurant chain with 12 locations was struggling with an outdated brand image and declining social media engagement. They needed a complete brand refresh and a digital strategy to attract a younger, affluent audience.',
+      "A high-end restaurant chain with 12 locations was struggling with an outdated brand image and declining social media engagement. They needed a complete brand refresh and a digital strategy to attract a younger, affluent audience.",
     solution:
-      'We crafted a sophisticated new visual identity, redesigned their website with immersive gastronomic photography, and launched a data-driven SMM campaign featuring influencer collaborations and mouth-watering video content.',
+      "We crafted a sophisticated new visual identity, redesigned their website with immersive gastronomic photography, and launched a data-driven SMM campaign featuring influencer collaborations and mouth-watering video content.",
     results: [
-      { label: 'Engagement', value: '+156%' },
-      { label: 'Reach', value: '3.2M' },
-      { label: 'Revenue Growth', value: '2x' },
-      { label: 'New Locations', value: '+4' },
+      { label: "Engagement", value: "+156%" },
+      { label: "Reach", value: "3.2M" },
+      { label: "Revenue Growth", value: "2x" },
+      { label: "New Locations", value: "+4" },
     ],
     image:
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
-    color: '#c9a96e',
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+    color: "#c9a96e",
   },
   {
     id: 2,
-    client: 'Verve Fashion',
-    title: 'Influencer Marketing Campaign That Generated 500K+ Followers',
-    category: 'Influencer Marketing',
-    tags: ['Influencer Marketing', 'Content', 'Video Production'],
+    client: "Verve Fashion",
+    title: "Influencer Marketing Campaign That Generated 500K+ Followers",
+    category: "Influencer Marketing",
+    tags: ["Influencer Marketing", "Content", "Video Production"],
     challenge:
-      'Verve Fashion, an emerging streetwear brand, needed to break through the noise in a saturated market. With a limited budget, they required a high-impact strategy to build brand awareness and drive sales.',
+      "Verve Fashion, an emerging streetwear brand, needed to break through the noise in a saturated market. With a limited budget, they required a high-impact strategy to build brand awareness and drive sales.",
     solution:
-      'We identified and partnered with 28 micro-influencers whose audiences matched Verve\'s target demographic. Our team produced authentic, trend-driven content — from unboxing videos to styled shoots — that resonated with Gen Z.',
+      "We identified and partnered with 28 micro-influencers whose audiences matched Verve's target demographic. Our team produced authentic, trend-driven content — from unboxing videos to styled shoots — that resonated with Gen Z.",
     results: [
-      { label: 'New Followers', value: '500K+' },
-      { label: 'Engagement Rate', value: '8.9%' },
-      { label: 'Sales Uplift', value: '+230%' },
-      { label: 'ROI', value: '4.7x' },
+      { label: "New Followers", value: "500K+" },
+      { label: "Engagement Rate", value: "8.9%" },
+      { label: "Sales Uplift", value: "+230%" },
+      { label: "ROI", value: "4.7x" },
     ],
     image:
-      'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&h=600&fit=crop',
-    color: '#e74c3c',
+      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&h=600&fit=crop",
+    color: "#e74c3c",
   },
   {
     id: 3,
-    client: 'TechFlow',
-    title: 'B2B Lead Generation Pipeline Generating 12K MQLs Monthly',
-    category: 'Performance',
-    tags: ['PPC', 'SEO', 'CRO', 'Marketing Automation'],
+    client: "TechFlow",
+    title: "B2B Lead Generation Pipeline Generating 12K MQLs Monthly",
+    category: "Performance",
+    tags: ["PPC", "SEO", "CRO", "Marketing Automation"],
     challenge:
-      'TechFlow, a B2B SaaS platform, had a complex product with a long sales cycle. Their existing lead generation efforts were underperforming — high CPA and low conversion rates were stifling growth.',
+      "TechFlow, a B2B SaaS platform, had a complex product with a long sales cycle. Their existing lead generation efforts were underperforming — high CPA and low conversion rates were stifling growth.",
     solution:
-      'We rebuilt their entire digital funnel: retargeting campaigns, SEO-optimized content hub, AI-driven lead scoring, and A/B tested landing pages. The result was a predictable, scalable revenue machine.',
+      "We rebuilt their entire digital funnel: retargeting campaigns, SEO-optimized content hub, AI-driven lead scoring, and A/B tested landing pages. The result was a predictable, scalable revenue machine.",
     results: [
-      { label: 'ROI', value: '340%' },
-      { label: 'MQLs / Month', value: '12K' },
-      { label: 'CPA Reduction', value: '-58%' },
-      { label: 'Pipeline Value', value: '$4.2M' },
+      { label: "ROI", value: "340%" },
+      { label: "MQLs / Month", value: "12K" },
+      { label: "CPA Reduction", value: "-58%" },
+      { label: "Pipeline Value", value: "$4.2M" },
     ],
     image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-    color: '#3498db',
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    color: "#3498db",
   },
   {
     id: 4,
-    client: 'Bloom Cosmetics',
-    title: 'Full Rebranding & E-Commerce Redesign That Doubled Conversion',
-    category: 'Web Design',
-    tags: ['Branding', 'UX/UI', 'Shopify Development'],
+    client: "Bloom Cosmetics",
+    title: "Full Rebranding & E-Commerce Redesign That Doubled Conversion",
+    category: "Web Design",
+    tags: ["Branding", "UX/UI", "Shopify Development"],
     challenge:
-      'Bloom Cosmetics had strong brand recognition but their website was outdated, slow, and had a poor mobile experience. Conversion rates were stagnating and cart abandonment was at 78%.',
+      "Bloom Cosmetics had strong brand recognition but their website was outdated, slow, and had a poor mobile experience. Conversion rates were stagnating and cart abandonment was at 78%.",
     solution:
-      'We executed a complete brand evolution — from logo to packaging — and rebuilt their Shopify store with a mobile-first approach, implementing one-click checkout, personalized recommendations, and micro-animations.',
+      "We executed a complete brand evolution — from logo to packaging — and rebuilt their Shopify store with a mobile-first approach, implementing one-click checkout, personalized recommendations, and micro-animations.",
     results: [
-      { label: 'Conversion Rate', value: '2.5x' },
-      { label: 'Page Load Speed', value: '-45%' },
-      { label: 'Cart Abandonment', value: '-32%' },
-      { label: 'Avg. Order Value', value: '+28%' },
+      { label: "Conversion Rate", value: "2.5x" },
+      { label: "Page Load Speed", value: "-45%" },
+      { label: "Cart Abandonment", value: "-32%" },
+      { label: "Avg. Order Value", value: "+28%" },
     ],
     image:
-      'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&h=600&fit=crop',
-    color: '#e84393',
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&h=600&fit=crop",
+    color: "#e84393",
   },
   {
     id: 5,
-    client: 'FitLife App',
-    title: 'User Acquisition Campaign with 200K Installs in 90 Days',
-    category: 'UA',
-    tags: ['User Acquisition', 'ASO', 'Creative', 'Analytics'],
+    client: "FitLife App",
+    title: "User Acquisition Campaign with 200K Installs in 90 Days",
+    category: "UA",
+    tags: ["User Acquisition", "ASO", "Creative", "Analytics"],
     challenge:
-      'FitLife, a fitness subscription app, needed to scale their user base rapidly ahead of their Series A fundraising. They required cost-efficient installs with strong retention metrics.',
+      "FitLife, a fitness subscription app, needed to scale their user base rapidly ahead of their Series A fundraising. They required cost-efficient installs with strong retention metrics.",
     solution:
-      'We designed a multi-channel UA strategy across TikTok, Meta, and Apple Search Ads. Our creative team produced 40+ video ad variations, and our analytics team optimized bidding in real-time.',
+      "We designed a multi-channel UA strategy across TikTok, Meta, and Apple Search Ads. Our creative team produced 40+ video ad variations, and our analytics team optimized bidding in real-time.",
     results: [
-      { label: 'Installs', value: '200K' },
-      { label: 'CPI', value: '$0.84' },
-      { label: 'D7 Retention', value: '38%' },
-      { label: 'Subscription Rate', value: '12%' },
+      { label: "Installs", value: "200K" },
+      { label: "CPI", value: "$0.84" },
+      { label: "D7 Retention", value: "38%" },
+      { label: "Subscription Rate", value: "12%" },
     ],
     image:
-      'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&h=600&fit=crop',
-    color: '#00b894',
+      "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&h=600&fit=crop",
+    color: "#00b894",
   },
   {
     id: 6,
-    client: 'Urban Eats',
-    title: 'SMM & Viral Content Strategy for a Food Delivery Platform',
-    category: 'SMM',
-    tags: ['SMM', 'Content', 'Video', 'Community Management'],
+    client: "Urban Eats",
+    title: "SMM & Viral Content Strategy for a Food Delivery Platform",
+    category: "SMM",
+    tags: ["SMM", "Content", "Video", "Community Management"],
     challenge:
-      'Urban Eats, a regional food delivery platform, was losing market share to bigger competitors. They needed a low-cost, high-impact strategy to build a loyal community and drive app downloads.',
+      "Urban Eats, a regional food delivery platform, was losing market share to bigger competitors. They needed a low-cost, high-impact strategy to build a loyal community and drive app downloads.",
     solution:
       'We created a hyper-local content strategy featuring "day in the life" videos with delivery partners, user-generated content campaigns, and witty TikTok trends that showcased the brand\'s personality.',
     results: [
-      { label: 'Video Views', value: '1M+' },
-      { label: 'New Followers', value: '78K' },
-      { label: 'App Downloads', value: '+185%' },
-      { label: 'Order Frequency', value: '+42%' },
+      { label: "Video Views", value: "1M+" },
+      { label: "New Followers", value: "78K" },
+      { label: "App Downloads", value: "+185%" },
+      { label: "Order Frequency", value: "+42%" },
     ],
     image:
-      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop',
-    color: '#f39c12',
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop",
+    color: "#f39c12",
   },
 ];
 
-const categories = ['All', 'Branding', 'Influencer Marketing', 'Performance', 'Web Design', 'UA', 'SMM'];
+const categories = [
+  "All",
+  "Branding",
+  "Influencer Marketing",
+  "Performance",
+  "Web Design",
+  "UA",
+  "SMM",
+];
 
 const stats = [
-  { value: '150+', label: 'Projects Delivered' },
-  { value: '8x', label: 'Avg. ROAS' },
-  { value: '50+', label: 'Team Members' },
-  { value: '12+', label: 'Industry Awards' },
+  { value: "150+", label: "Projects Delivered" },
+  { value: "8x", label: "Avg. ROAS" },
+  { value: "50+", label: "Team Members" },
+  { value: "12+", label: "Industry Awards" },
 ];
 
 export const CaseStudyPage = () => {
-  const { uiStore } = useStores();
-  const [activeFilter, setActiveFilter] = useState('All');
+  const navigate = useNavigate();
+  const [activeFilter, setActiveFilter] = useState("All");
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null);
 
   const filteredCases =
-    activeFilter === 'All'
+    activeFilter === "All"
       ? caseStudies
       : caseStudies.filter((c) => c.category === activeFilter);
 
@@ -181,9 +230,6 @@ export const CaseStudyPage = () => {
               animate="visible"
               variants={staggerContainer}
             >
-              <motion.div className={styles.hero__badge} variants={fadeInUp}>
-                Our Work
-              </motion.div>
               <motion.h1 className={styles.hero__title} variants={fadeInUp}>
                 Case <span className="text-gradient">Studies</span>
               </motion.h1>
@@ -194,7 +240,7 @@ export const CaseStudyPage = () => {
               <motion.div className={styles.hero__stats} variants={fadeInUp}>
                 {stats.map((stat) => (
                   <div key={stat.label} className={styles.hero__statItem}>
-                    <span className={styles.hero__statValue}>{stat.value}</span>
+                    <AnimatedCounter value={stat.value} className={styles.hero__statValue} />
                     <span className={styles.hero__statLabel}>{stat.label}</span>
                   </div>
                 ))}
@@ -229,7 +275,7 @@ export const CaseStudyPage = () => {
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: true, margin: "-50px" }}
             >
               <AnimatePresence mode="wait">
                 {filteredCases.map((c) => (
@@ -278,7 +324,10 @@ export const CaseStudyPage = () => {
                       </div>
                       <div className={styles.caseCard__results}>
                         {c.results.slice(0, 2).map((r) => (
-                          <div key={r.label} className={styles.caseCard__result}>
+                          <div
+                            key={r.label}
+                            className={styles.caseCard__result}
+                          >
                             <span className={styles.caseCard__resultValue}>
                               {r.value}
                             </span>
@@ -378,24 +427,17 @@ export const CaseStudyPage = () => {
                   </div>
 
                   <div className={styles.modal__section}>
-                    <h4 className={styles.modal__sectionTitle}>
-                      The Solution
-                    </h4>
+                    <h4 className={styles.modal__sectionTitle}>The Solution</h4>
                     <p className={styles.modal__text}>
                       {selectedCase.solution}
                     </p>
                   </div>
 
                   <div className={styles.modal__section}>
-                    <h4 className={styles.modal__sectionTitle}>
-                      The Results
-                    </h4>
+                    <h4 className={styles.modal__sectionTitle}>The Results</h4>
                     <div className={styles.modal__results}>
                       {selectedCase.results.map((r) => (
-                        <div
-                          key={r.label}
-                          className={styles.modal__resultCard}
-                        >
+                        <div key={r.label} className={styles.modal__resultCard}>
                           <span className={styles.modal__resultValue}>
                             {r.value}
                           </span>
@@ -436,10 +478,7 @@ export const CaseStudyPage = () => {
                 Ready to Build Your
                 <span className="text-gradient"> Success Story?</span>
               </motion.h2>
-              <motion.p
-                className={styles.cta__subtitle}
-                variants={fadeInUp}
-              >
+              <motion.p className={styles.cta__subtitle} variants={fadeInUp}>
                 Let's discuss how we can help you achieve your goals with a
                 tailored digital strategy.
               </motion.p>
@@ -450,7 +489,7 @@ export const CaseStudyPage = () => {
                 <Button
                   variant="ghost"
                   size="lg"
-                  onClick={() => uiStore.setPage('home')}
+                  onClick={() => navigate("/")}
                 >
                   Back to Home
                 </Button>

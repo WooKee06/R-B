@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '../../shared/ui/Button';
-import { useStores } from '../../app/providers/MobxProvider';
+import { useNavigate } from 'react-router-dom';
 import {
   decorBottomRightVariants,
   decorTopLeftVariants,
@@ -15,7 +15,7 @@ import LiquidGlass from '@/shared/ui/LiquidGlass/LiquidGlass';
 import styles from './Hero.module.scss';
 
 export const Hero = () => {
-  const { uiStore } = useStores();
+  const navigate = useNavigate();
   return (
     <section className={styles.hero}>
       <HeroBackground />
@@ -97,7 +97,7 @@ export const Hero = () => {
             variant="glass"
             size="lg"
             asMotion
-            onClick={() => uiStore.setPage('case-study')}
+            onClick={() => navigate('/case-study')}
           >
             View Case Study
           </Button>

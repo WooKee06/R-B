@@ -1,16 +1,17 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { observer } from 'mobx-react-lite';
-import { useStores } from '../../app/providers/MobxProvider';
-import { Container } from '../../shared/ui/Container';
-import { Button } from '../../shared/ui/Button';
-import { useScroll } from '../../shared/hooks';
-import styles from './Header.module.scss';
-import Logo from '../../../public/logo.svg';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { observer } from "mobx-react-lite";
+import { useStores } from "../../app/providers/MobxProvider";
+import { Container } from "../../shared/ui/Container";
+import { Button } from "../../shared/ui/Button";
+import { useScroll } from "../../shared/hooks";
+import styles from "./Header.module.scss";
+import Logo from "../../../public/logo.svg";
 import {
   mobileItemVariants,
   mobileMenuVariants,
-} from '@/shared/ui/BasicAnimation/BasicAnimation';
+} from "@/shared/ui/BasicAnimation/BasicAnimation";
+import { Link } from "react-router-dom";
 
 interface DropdownItem {
   label: string;
@@ -29,40 +30,49 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   {
-    label: 'Agency',
-    href: '#portfolio',
+    label: "Agency",
+    href: "/#portfolio",
     dropdown: {
       popularServices: [
         {
-          label: 'TikTok Ads Management',
-          href: '#services',
-          description: 'запуск и оптимизация рекламных кампаний',
+          label: "TikTok Ads Management",
+          href: "/#services",
+          description: "запуск и оптимизация рекламных кампаний",
         },
         {
-          label: 'Influencer Marketing',
-          href: '#services',
-          description: 'коллаборации с блогерами',
+          label: "Influencer Marketing",
+          href: "/#services",
+          description: "коллаборации с блогерами",
         },
       ],
       links: [
-        { label: 'About Us', href: '#about' },
-        { label: 'Our Team', href: '#team' },
-        { label: 'Case Studies', href: '#case-study' },
-        { label: 'FAQ', href: '#faq' },
+        { label: "About Us", href: "/#about" },
+        { label: "Our Team", href: "/#team" },
+        { label: "Case Studies", href: "/case-study" },
+        { label: "FAQ", href: "/#faq" },
       ],
     },
   },
-  { label: 'Services', href: '#services' },
-  { label: 'Case study', href: '#case-study' },
-  { label: 'Reviews', href: '#testimonials' },
-  { label: 'Contact', href: '#contact-page' },
+  { label: "Services", href: "/#services" },
+  { label: "Case study", href: "/case-study" },
+  { label: "Reviews", href: "/#testimonials" },
+  { label: "Contact", href: "/contact" },
 ];
+
+const MotionLink = motion.create(Link);
 
 export const Header = observer(() => {
   const { uiStore } = useStores();
   const scrolled = useScroll();
-  const [activeLink, setActiveLink] = useState('');
+  const [activeLink, setActiveLink] = useState("");
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
+
+  const handleNavClick = (href: string) => {
+    setActiveLink(href);
+    if (uiStore.isMobileMenuOpen) {
+      uiStore.closeMobileMenu();
+    }
+  };
 
   return (
     <>
@@ -72,9 +82,9 @@ export const Header = observer(() => {
       >
         <Container>
           <div className={styles.header__inner}>
-            <a href="#" className={styles.header__logo}>
+            <Link to="/" className={styles.header__logo}>
               <img src={Logo} alt="" />
-            </a>
+            </Link>
 
             <nav className={styles.header__nav} aria-label="Main navigation">
               <ul className={styles.header__navList}>
@@ -87,21 +97,11 @@ export const Header = observer(() => {
                     }
                     onMouseLeave={() => setHoveredDropdown(null)}
                   >
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className={styles.header__navLink}
                       data-active={activeLink === link.href}
-                      onClick={(e) => {
-                        if (link.href === '#case-study') {
-                          e.preventDefault();
-                          uiStore.setPage('case-study');
-                        }
-                        if (link.href === '#contact-page') {
-                          e.preventDefault();
-                          uiStore.setPage('contact');
-                        }
-                        setActiveLink(link.href);
-                      }}
+                      onClick={() => handleNavClick(link.href)}
                     >
                       {link.label}
                       {link.dropdown && (
@@ -125,7 +125,7 @@ export const Header = observer(() => {
                           </svg>
                         </span>
                       )}
-                    </a>
+                    </Link>
 
                     {link.dropdown && (
                       <AnimatePresence>
@@ -135,16 +135,16 @@ export const Header = observer(() => {
                             initial={{ opacity: 0, y: 8, scaleY: 0.95 }}
                             animate={{ opacity: 1, y: 0, scaleY: 1 }}
                             exit={{ opacity: 0, y: 8, scaleY: 0.95 }}
-                            transition={{ duration: 0.2, ease: 'easeOut' }}
-                            style={{ transformOrigin: 'top center' }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                            style={{ transformOrigin: "top center" }}
                           >
                             <div className={styles.dropdown__inner}>
                               <div className={styles.dropdown__services}>
                                 {link.dropdown.popularServices.map(
                                   (service) => (
-                                    <a
+                                    <Link
                                       key={service.href}
-                                      href={service.href}
+                                      to={service.href}
                                       className={styles.dropdown__serviceCard}
                                     >
                                       <span
@@ -154,26 +154,20 @@ export const Header = observer(() => {
                                       >
                                         {service.label}
                                       </span>
-                                    </a>
+                                    </Link>
                                   ),
                                 )}
                               </div>
                               <div className={styles.dropdown__divider} />
                               <div className={styles.dropdown__links}>
                                 {link.dropdown.links.map((item) => (
-                                  <a
+                                  <Link
                                     key={item.href}
-                                    href={item.href}
+                                    to={item.href}
                                     className={styles.dropdown__link}
-                                    onClick={(e) => {
-                                      if (item.href === '#case-study') {
-                                        e.preventDefault();
-                                        uiStore.setPage('case-study');
-                                      }
-                                    }}
                                   >
                                     {item.label}
-                                  </a>
+                                  </Link>
                                 ))}
                               </div>
                             </div>
@@ -192,7 +186,7 @@ export const Header = observer(() => {
 
             <button
               className={styles.header__burger}
-              aria-label={uiStore.isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={uiStore.isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={uiStore.isMobileMenuOpen}
               onClick={uiStore.toggleMobileMenu}
             >
@@ -221,26 +215,15 @@ export const Header = observer(() => {
               exit="closed"
             >
               {navLinks.map((link) => (
-                <motion.a
+                <MotionLink
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
                   className={styles.mobileMenu__link}
                   variants={mobileItemVariants}
-                  onClick={(e) => {
-                    if (link.href === '#case-study' || link.href === '#contact-page') {
-                      e.preventDefault();
-                    }
-                    uiStore.closeMobileMenu();
-                    if (link.href === '#case-study') {
-                      uiStore.setPage('case-study');
-                    }
-                    if (link.href === '#contact-page') {
-                      uiStore.setPage('contact');
-                    }
-                  }}
+                  onClick={() => handleNavClick(link.href)}
                 >
                   {link.label}
-                </motion.a>
+                </MotionLink>
               ))}
               <motion.div variants={mobileItemVariants}>
                 <Button
