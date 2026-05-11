@@ -47,15 +47,15 @@ const navLinks: NavLink[] = [
       links: [
         { label: 'About Us', href: '#about' },
         { label: 'Our Team', href: '#team' },
-        { label: 'Case Studies', href: '#articles' },
+        { label: 'Case Studies', href: '#case-study' },
         { label: 'FAQ', href: '#faq' },
       ],
     },
   },
   { label: 'Services', href: '#services' },
-  { label: 'Case study', href: '#articles' },
+  { label: 'Case study', href: '#case-study' },
   { label: 'Reviews', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '#contact-page' },
 ];
 
 export const Header = observer(() => {
@@ -91,7 +91,17 @@ export const Header = observer(() => {
                       href={link.href}
                       className={styles.header__navLink}
                       data-active={activeLink === link.href}
-                      onClick={() => setActiveLink(link.href)}
+                      onClick={(e) => {
+                        if (link.href === '#case-study') {
+                          e.preventDefault();
+                          uiStore.setPage('case-study');
+                        }
+                        if (link.href === '#contact-page') {
+                          e.preventDefault();
+                          uiStore.setPage('contact');
+                        }
+                        setActiveLink(link.href);
+                      }}
                     >
                       {link.label}
                       {link.dropdown && (
@@ -155,6 +165,12 @@ export const Header = observer(() => {
                                     key={item.href}
                                     href={item.href}
                                     className={styles.dropdown__link}
+                                    onClick={(e) => {
+                                      if (item.href === '#case-study') {
+                                        e.preventDefault();
+                                        uiStore.setPage('case-study');
+                                      }
+                                    }}
                                   >
                                     {item.label}
                                   </a>
@@ -210,7 +226,18 @@ export const Header = observer(() => {
                   href={link.href}
                   className={styles.mobileMenu__link}
                   variants={mobileItemVariants}
-                  onClick={uiStore.closeMobileMenu}
+                  onClick={(e) => {
+                    if (link.href === '#case-study' || link.href === '#contact-page') {
+                      e.preventDefault();
+                    }
+                    uiStore.closeMobileMenu();
+                    if (link.href === '#case-study') {
+                      uiStore.setPage('case-study');
+                    }
+                    if (link.href === '#contact-page') {
+                      uiStore.setPage('contact');
+                    }
+                  }}
                 >
                   {link.label}
                 </motion.a>

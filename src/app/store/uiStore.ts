@@ -37,8 +37,16 @@ class UiStore {
     this.scrolled = value;
   };
 
+  currentPage: 'home' | 'case-study' | 'contact' = 'home';
+
   setActiveSection = (section: string) => {
     this.activeSection = section;
+  };
+
+  setPage = (page: 'home' | 'case-study' | 'contact') => {
+    this.currentPage = page;
+    this.closeMobileMenu();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 }
 

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '../../shared/ui/Button';
+import { useStores } from '../../app/providers/MobxProvider';
 import {
   decorBottomRightVariants,
   decorTopLeftVariants,
@@ -14,6 +15,7 @@ import LiquidGlass from '@/shared/ui/LiquidGlass/LiquidGlass';
 import styles from './Hero.module.scss';
 
 export const Hero = () => {
+  const { uiStore } = useStores();
   return (
     <section className={styles.hero}>
       <HeroBackground />
@@ -91,7 +93,12 @@ export const Hero = () => {
               />
             </svg>
           </Button>
-          <Button variant="glass" size="lg" asMotion>
+          <Button
+            variant="glass"
+            size="lg"
+            asMotion
+            onClick={() => uiStore.setPage('case-study')}
+          >
             View Case Study
           </Button>
         </motion.div>
