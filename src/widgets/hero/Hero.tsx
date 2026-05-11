@@ -1,17 +1,17 @@
-import { motion, type Variants } from "framer-motion";
-import { Button } from "../../shared/ui/Button";
+import { motion } from 'framer-motion';
+import { Button } from '../../shared/ui/Button';
 import {
   decorBottomRightVariants,
   decorTopLeftVariants,
   fadeInUp,
   scrollHintVariants,
   staggerContainer,
-} from "../../shared/lib";
-import { HeroBackground } from "./HeroBackground/HeroBackground";
-import DecorBottomRightImg from "/Hero/decorBottomRight.png";
-import DecorTopLeftImg from "/Hero/decorTopLeft.png";
-import LiquidGlass from "@/shared/ui/LiquidGlass/LiquidGlass";
-import styles from "./Hero.module.scss";
+} from '../../shared/lib';
+import { HeroBackground } from './HeroBackground/HeroBackground';
+import DecorBottomRightImg from '/Hero/decorBottomRight.png';
+import DecorTopLeftImg from '/Hero/decorTopLeft.png';
+import LiquidGlass from '@/shared/ui/LiquidGlass/LiquidGlass';
+import styles from './Hero.module.scss';
 
 export const Hero = () => {
   return (
@@ -31,13 +31,13 @@ export const Hero = () => {
         >
           <LiquidGlass
             style={{
-              padding: "20px 60px",
-              display: "flex",
-              gap: "70px",
-              width: "max-content",
-              position: "relative",
-              right: "-270px",
-              top: "40px",
+              padding: '20px 60px',
+              display: 'flex',
+              gap: '70px',
+              width: 'max-content',
+              position: 'relative',
+              right: '-270px',
+              top: '40px',
             }}
             className={styles.hero__decorTopLeftContent}
           >
@@ -103,13 +103,13 @@ export const Hero = () => {
         >
           <LiquidGlass
             style={{
-              padding: "30px",
-              display: "flex",
-              gap: "70px",
-              width: "max-content",
-              position: "relative",
-              left: "-100px",
-              bottom: "-230px",
+              padding: '30px',
+              display: 'flex',
+              gap: '70px',
+              width: 'max-content',
+              position: 'relative',
+              left: '-100px',
+              bottom: '-230px',
             }}
             className={styles.hero__decorBottomRightContent}
           >
@@ -137,12 +137,12 @@ export const Hero = () => {
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "8px",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '8px',
           }}
         >
           <span className={styles.hero__scrollLine} />
