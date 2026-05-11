@@ -1,16 +1,16 @@
-import { motion } from "framer-motion";
-import { Container } from "../../shared/ui/Container";
-import styles from "./Footer.module.scss";
-import Logo from "../../../public/logo.png";
+import { motion } from 'framer-motion';
+import { Container } from '../../shared/ui/Container';
+import styles from './Footer.module.scss';
+import Logo from '../../../public/logo.svg';
 
 const footerLinks = {
-  Navigation: ["Service", "Agency", "Case Study", "Resource", "Contact"],
-  Licence: ["Privacy Policy", "Copyright", "Email Address"],
+  Navigation: ['Service', 'Agency', 'Case Study', 'Resource', 'Contact'],
+  Licence: ['Privacy Policy', 'Copyright', 'Email Address'],
   Contact: [
-    "(406) 555-0120",
-    "Hey@boostim.com",
-    "2972 Westheimer Rd. Santa Ana, Illinois 85486 ",
-    "Privacy Policy",
+    '(406) 555-0120',
+    'Hey@boostim.com',
+    '2972 Westheimer Rd. Santa Ana, Illinois 85486 ',
+    'Privacy Policy',
   ],
 };
 
@@ -20,7 +20,7 @@ export const Footer = () => {
       className={styles.footer}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <Container>

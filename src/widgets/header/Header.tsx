@@ -6,7 +6,7 @@ import { Container } from '../../shared/ui/Container';
 import { Button } from '../../shared/ui/Button';
 import { useScroll } from '../../shared/hooks';
 import styles from './Header.module.scss';
-import Logo from '../../../public/logo.png';
+import Logo from '../../../public/logo.svg';
 import {
   mobileItemVariants,
   mobileMenuVariants,
