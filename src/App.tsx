@@ -3,6 +3,8 @@ import { MobxProvider } from "./app/providers/MobxProvider";
 import { HomePage } from "./pages/home/HomePage";
 import { CaseStudyPage } from "./pages/case-study/CaseStudyPage";
 import { ContactPage } from "./pages/contact/ContactPage";
+import { ReviewsPage } from "./pages/reviews/ReviewsPage";
+import { ServicesPage } from "./pages/services/ServicesPage";
 import "./shared/styles/reset.scss";
 import "./shared/styles/global.scss";
 
@@ -13,6 +15,8 @@ export const App = () => {
         <Route index element={<HomePage />} />
         <Route path="case-study" element={<CaseStudyPage />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="reviews" element={<ReviewsPage />} />
+        <Route path="services" element={<ServicesPage />} />
       </Routes>
     </MobxProvider>
   );

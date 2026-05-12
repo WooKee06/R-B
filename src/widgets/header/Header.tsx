@@ -53,9 +53,9 @@ const navLinks: NavLink[] = [
       ],
     },
   },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Case study", href: "/case-study" },
-  { label: "Reviews", href: "/#testimonials" },
+  { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
 ];
 
