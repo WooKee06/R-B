@@ -1,5 +1,5 @@
-@use 'variables';
-@use 'mixins';
+@use "variables";
+@use "mixins";
 
 :root {
   --color-bg-primary: #{variables.$color-bg-primary};
@@ -12,6 +12,46 @@
 body {
   background-color: variables.$color-bg-primary;
   color: variables.$color-text-primary;
+}
+
+html[lang="ru"] {
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a,
+  li,
+  button,
+  input,
+  textarea,
+  select,
+  .section-badge,
+  .text-gradient {
+    font-family: #{variables.$font-display} !important;
+  }
+
+  [class*="hero__title"] {
+    font-size: clamp(2.5rem, 5vw, 4.5rem) !important;
+    line-height: 110px;
+
+    @include mixins.tablet {
+      font-size: 45px;
+      line-height: 40px;
+    }
+  }
+
+  [class*="hero__content"] {
+    margin: 0 100px;
+
+    @include mixins.tablet {
+      margin: 0 10px;
+    }
+  }
 }
 
 .section-badge {
@@ -27,7 +67,7 @@ body {
   margin-bottom: 20px;
 
   &::before {
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -37,8 +77,13 @@ body {
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .text-gradient {

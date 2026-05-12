@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Container } from "../../shared/ui/Container";
 import { Section } from "../../shared/ui/Section";
 import { Button } from "../../shared/ui/Button";
@@ -52,6 +53,7 @@ const articles: Article[] = [
 ];
 
 export const Articles = () => {
+  const { t } = useTranslation();
   return (
     <Section id="articles" className={styles.articles}>
       <Container>
@@ -63,17 +65,13 @@ export const Articles = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className={styles.articles__title}>
-            Growth, recognition, and return on investment: not just quantitative
-            indicators
+            {t("articles.title")}
           </h2>
           <div>
             <p className={styles.articles__subtitle}>
-              An award-winning full-service agency. R&B Agency combines high-end
-              digital marketing, bold design, and conversion-driven development
-              — with a sharp focus on understanding your brand and audience
-              first.
+              {t("articles.subtitle")}
             </p>
-            <Button variant="border">See more</Button>
+            <Button variant="border">{t("articles.seeMore")}</Button>
           </div>
         </motion.div>
 
@@ -136,7 +134,7 @@ export const Articles = () => {
           viewport={{ once: true }}
         >
           <Button variant="secondary" size="md">
-            View All Articles
+            {t("articles.viewAll")}
           </Button>
         </motion.div>
       </Container>

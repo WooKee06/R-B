@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, animate, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Header } from "../../widgets/header";
 import { Footer } from "../../widgets/footer";
 import { Container } from "../../shared/ui/Container";
@@ -134,13 +135,6 @@ const reviews: Review[] = [
 
 const ratingFilters = ["All", "5", "4", "3", "2", "1"];
 
-const stats = [
-  { value: "4.9", label: "Avg. Rating" },
-  { value: "200+", label: "Reviews" },
-  { value: "98%", label: "Satisfaction" },
-  { value: "50+", label: "Clients" },
-];
-
 const AnimatedCounter = ({
   value,
   className,
@@ -207,7 +201,15 @@ const StarIcon = ({ filled }: { filled: boolean }) => (
 
 export const ReviewsPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("All");
+
+  const stats = (t("reviewsPage.stats", { returnObjects: true }) as { label: string }[]).map(
+    (s: { label: string }, i: number) => ({
+      ...s,
+      value: ["4.9", "200+", "98%", "50+"][i],
+    })
+  );
 
   const filteredReviews =
     activeFilter === "All"
@@ -228,14 +230,13 @@ export const ReviewsPage = () => {
               variants={staggerContainer}
             >
               <motion.h1 className={styles.hero__title} variants={fadeInUp}>
-                Client <span className="text-gradient">Reviews</span>
+                {t("reviewsPage.heroTitle")} <span className="text-gradient">{t("reviewsPage.heroTitleGradient")}</span>
               </motion.h1>
               <motion.p className={styles.hero__subtitle} variants={fadeInUp}>
-                Real feedback from real clients. See why businesses trust us
-                with their digital growth.
+                {t("reviewsPage.heroSubtitle")}
               </motion.p>
               <motion.div className={styles.hero__stats} variants={fadeInUp}>
-                {stats.map((stat) => (
+                {stats.map((stat: { label: string; value: string }) => (
                   <div key={stat.label} className={styles.hero__statItem}>
                     <AnimatedCounter
                       value={stat.value}
@@ -268,7 +269,7 @@ export const ReviewsPage = () => {
                   onClick={() => setActiveFilter(rating)}
                 >
                   {rating === "All"
-                    ? "All"
+                    ? t("reviewsPage.all")
                     : (
                       <span className={styles.reviews__filterStars}>
                         {rating}
@@ -345,7 +346,7 @@ export const ReviewsPage = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                No reviews found for this rating.
+                {t("reviewsPage.noResults")}
               </motion.p>
             )}
           </Container>
@@ -364,23 +365,22 @@ export const ReviewsPage = () => {
               }}
             >
               <motion.h2 className={styles.cta__title} variants={fadeInUp}>
-                Share Your
-                <span className="text-gradient"> Experience</span>
+                {t("reviewsPage.ctaTitle")}
+                <span className="text-gradient"> {t("reviewsPage.ctaTitleGradient")}</span>
               </motion.h2>
               <motion.p className={styles.cta__subtitle} variants={fadeInUp}>
-                Your feedback helps us grow and serve you better. We'd love to
-                hear about your journey with us.
+                {t("reviewsPage.ctaSubtitle")}
               </motion.p>
               <motion.div className={styles.cta__actions} variants={fadeInUp}>
                 <Button variant="primary" size="lg" asMotion>
-                  Leave a Review
+                  {t("reviewsPage.leaveReview")}
                 </Button>
                 <Button
                   variant="ghost"
                   size="lg"
                   onClick={() => navigate("/")}
                 >
-                  Back to Home
+                  {t("reviewsPage.backHome")}
                 </Button>
               </motion.div>
             </motion.div>

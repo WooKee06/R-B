@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../../shared/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -16,6 +17,7 @@ import styles from './Hero.module.scss';
 
 export const Hero = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <section className={styles.hero}>
       <HeroBackground />
@@ -44,32 +46,30 @@ export const Hero = () => {
             className={styles.hero__decorTopLeftContent}
           >
             <section className={styles.glassInfo}>
-              <span>Created by:</span>
-              <h3>Retsu @Tik Tok Creater</h3>
+              <span>{t('hero.createdBy')}</span>
+              <h3>{t('hero.retsuCreator')}</h3>
             </section>
             <section className={styles.glassInfo}>
-              <span>Submitted on:</span>
-              <h3>May 4, 2026</h3>
+              <span>{t('hero.submittedOn')}</span>
+              <h3>{t('hero.date')}</h3>
             </section>
           </LiquidGlass>
         </motion.div>
 
         <div className={styles.title}>
           <motion.h2 className={styles.hero__title} variants={fadeInUp}>
-            Stay ahead with our
+            {t('hero.title1')}
           </motion.h2>
           <motion.h2 className={styles.hero__title} variants={fadeInUp}>
-            innovative approach
+            {t('hero.title2')}
           </motion.h2>
         </div>
         <motion.p className={styles.hero__subtitle} variants={fadeInUp}>
-          An award-winning full-service agency. R&B Agency combines high-end
-          digital marketing, bold design, and conversion-driven development —
-          with a sharp focus on understanding your brand and audience first.
+          {t('hero.subtitle')}
         </motion.p>
         <motion.div className={styles.hero__actions} variants={fadeInUp}>
           <Button variant="primary" size="lg" asMotion>
-            Schedule Call
+            {t('hero.scheduleCall')}
             <svg
               width="24"
               height="24"
@@ -99,7 +99,7 @@ export const Hero = () => {
             asMotion
             onClick={() => navigate('/case-study')}
           >
-            View Case Study
+            {t('hero.viewCaseStudy')}
           </Button>
         </motion.div>
 
@@ -126,10 +126,10 @@ export const Hero = () => {
                 <li className={styles.cimage}></li>
                 <li className={styles.cimage}></li>
 
-                <small>1.350 C</small>
+                <small>{t('hero.usersCount')}</small>
               </ul>
               <h3>
-                <div></div>Active Users Worldwide
+                <div></div>{t('hero.activeUsers')}
               </h3>
             </section>
           </LiquidGlass>

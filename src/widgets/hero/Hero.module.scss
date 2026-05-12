@@ -79,6 +79,7 @@
   }
 
   @include m.mobile {
+    padding-top: 110px;
     .glassInfo {
       span {
         font-size: 10px;
@@ -133,8 +134,8 @@
     @include m.tablet {
       width: 260px;
       height: 270px;
-      top: -50px;
-      left: -50px;
+      top: -180px;
+      left: 20px;
     }
 
     @include m.mobile {
@@ -147,6 +148,12 @@
   }
 
   &__decorTopLeftContent {
+    @include m.tablet {
+      transform-origin: top left;
+      right: -150px !important;
+      top: 95px !important;
+      padding: 15px 30px !important;
+    }
     @include m.mobile {
       transform: scale(0.8);
       transform-origin: top left;
@@ -187,7 +194,7 @@
     @include m.mobile {
       transform: scale(0.8);
       transform-origin: bottom right;
-      left: -150px !important;
+      left: -220px !important;
       bottom: -50px !important;
     }
   }
@@ -244,7 +251,7 @@
         line-height: 1.1;
 
         &:last-child {
-          margin-top: -10px;
+          margin-top: 5px;
         }
       }
     }

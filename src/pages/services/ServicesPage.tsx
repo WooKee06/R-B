@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, animate, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Header } from "../../widgets/header";
 import { Footer } from "../../widgets/footer";
 import { Container } from "../../shared/ui/Container";
@@ -11,59 +12,47 @@ import styles from "./ServicesPage.module.scss";
 
 interface Service {
   icon: string;
-  title: string;
-  description: string;
-  details: string;
+  titleKey: string;
+  descriptionKey: string;
+  detailsKey: string;
 }
 
 const services: Service[] = [
   {
     icon: "./Servise/Icon Container.svg",
-    title: "Expertise That Drives Results",
-    description:
-      "Our team of seasoned professionals brings years of experience and deep industry expertise to every project.",
-    details:
-      "We don't just follow trends — we set them. From strategy through execution, every deliverable is backed by data, refined by creativity, and built for impact.",
+    titleKey: "servicesPage.servicesList.0.title",
+    descriptionKey: "servicesPage.servicesList.0.description",
+    detailsKey: "servicesPage.servicesList.0.details",
   },
   {
     icon: "./Servise/Icon Container-1.svg",
-    title: "Tailored Business Solutions",
-    description:
-      "We understand that every business is unique.",
-    details:
-      "Our solutions are fully customized to your goals, audience, and market reality. No templates, no shortcuts — just a strategy that fits your DNA.",
+    titleKey: "servicesPage.servicesList.1.title",
+    descriptionKey: "servicesPage.servicesList.1.description",
+    detailsKey: "servicesPage.servicesList.1.details",
   },
   {
     icon: "./Servise/Icon Container-2.svg",
-    title: "Cutting-Edge Web Design",
-    description:
-      "Leave a lasting impression with top-notch web design.",
-    details:
-      "Modern, fast, and built to convert. Every pixel is placed with purpose — blending aesthetics with performance for an experience users love.",
+    titleKey: "servicesPage.servicesList.2.title",
+    descriptionKey: "servicesPage.servicesList.2.description",
+    detailsKey: "servicesPage.servicesList.2.details",
   },
   {
     icon: "./Servise/Icon Container-3.svg",
-    title: "Mobile-First Approach",
-    description:
-      "We prioritize responsive, mobile-first design.",
-    details:
-      "In today's mobile-centric world, your website needs to look and work perfectly everywhere. We build for every screen, without compromise.",
+    titleKey: "servicesPage.servicesList.3.title",
+    descriptionKey: "servicesPage.servicesList.3.description",
+    detailsKey: "servicesPage.servicesList.3.details",
   },
   {
     icon: "./Servise/Icon Container-4.svg",
-    title: "Marketing Strategies",
-    description:
-      "Data-driven marketing that targets with precision.",
-    details:
-      "Maximizing reach, engagement, and ROI. Our campaigns are built on real insights, tested relentlessly, and optimized for what works.",
+    titleKey: "servicesPage.servicesList.4.title",
+    descriptionKey: "servicesPage.servicesList.4.description",
+    detailsKey: "servicesPage.servicesList.4.details",
   },
   {
     icon: "./Servise/Icon Container-5.svg",
-    title: "Search Engine Optimization",
-    description:
-      "Boost your online visibility with expert SEO.",
-    details:
-      "From local SEO to global reach, we get you found. Technical audits, content strategy, and link-building that drives sustainable organic growth.",
+    titleKey: "servicesPage.servicesList.5.title",
+    descriptionKey: "servicesPage.servicesList.5.description",
+    detailsKey: "servicesPage.servicesList.5.details",
   },
 ];
 
@@ -149,6 +138,14 @@ const AnimatedCounter = ({
 
 export const ServicesPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const stats = (
+    t("servicesPage.stats", { returnObjects: true }) as { label: string }[]
+  ).map((s: { label: string }, i: number) => ({
+    ...s,
+    value: ["8+", "50+", "200+", "12+"][i],
+  }));
 
   return (
     <>
@@ -164,11 +161,13 @@ export const ServicesPage = () => {
               variants={staggerContainer}
             >
               <motion.h1 className={styles.hero__title} variants={fadeInUp}>
-                Our <span className="text-gradient">Services</span>
+                {t("servicesPage.heroTitle")}{" "}
+                <span className="text-gradient">
+                  {t("servicesPage.heroTitleGradient")}
+                </span>
               </motion.h1>
               <motion.p className={styles.hero__subtitle} variants={fadeInUp}>
-                From strategy to execution — we deliver end-to-end digital
-                solutions that drive real business growth.
+                {t("servicesPage.heroSubtitle")}
               </motion.p>
             </motion.div>
           </Container>
@@ -185,7 +184,7 @@ export const ServicesPage = () => {
             >
               {services.map((service) => (
                 <motion.div
-                  key={service.title}
+                  key={service.titleKey}
                   className={styles.serviceCard}
                   variants={cardHover}
                   whileHover="hover"
@@ -197,13 +196,13 @@ export const ServicesPage = () => {
                       <img src={service.icon} alt="" width={72} />
                     </span>
                     <h3 className={styles.serviceCard__title}>
-                      {service.title}
+                      {t(service.titleKey)}
                     </h3>
                     <p className={styles.serviceCard__description}>
-                      {service.description}
+                      {t(service.descriptionKey)}
                     </p>
                     <p className={styles.serviceCard__details}>
-                      {service.details}
+                      {t(service.detailsKey)}
                     </p>
                   </div>
                 </motion.div>
@@ -222,22 +221,15 @@ export const ServicesPage = () => {
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.span
-                className="section-badge"
-                variants={fadeInUp}
-              >
-                Meet the Founders
-              </motion.span>
               <motion.h2 className={styles.team__title} variants={fadeInUp}>
-                The Minds Behind
-                <span className="text-gradient"> R&B Agency</span>
+                {t("servicesPage.teamTitle")}
+                <span className="text-gradient">
+                  {" "}
+                  {t("servicesPage.teamTitleGradient")}
+                </span>
               </motion.h2>
-              <motion.p
-                className={styles.team__subtitle}
-                variants={fadeInUp}
-              >
-                Two founders, one vision — to reshape digital marketing with
-                creativity, data, and relentless ambition.
+              <motion.p className={styles.team__subtitle} variants={fadeInUp}>
+                {t("servicesPage.teamSubtitle")}
               </motion.p>
             </motion.div>
 
@@ -252,7 +244,10 @@ export const ServicesPage = () => {
                   variants={{
                     hidden: {},
                     visible: {
-                      transition: { staggerChildren: 0.15, delayChildren: index * 0.2 },
+                      transition: {
+                        staggerChildren: 0.15,
+                        delayChildren: index * 0.2,
+                      },
                     },
                   }}
                 >
@@ -301,9 +296,7 @@ export const ServicesPage = () => {
                     }}
                   >
                     <h3 className={styles.teamCard__name}>{member.name}</h3>
-                    <span className={styles.teamCard__role}>
-                      {member.role}
-                    </span>
+                    <span className={styles.teamCard__role}>{member.role}</span>
                     <p className={styles.teamCard__bio}>{member.bio}</p>
                   </motion.div>
                 </motion.div>
@@ -317,15 +310,12 @@ export const ServicesPage = () => {
               viewport={{ once: true }}
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } },
+                visible: {
+                  transition: { staggerChildren: 0.12, delayChildren: 0.3 },
+                },
               }}
             >
-              {[
-                { value: "8+", label: "Years Experience" },
-                { value: "50+", label: "Team Members" },
-                { value: "200+", label: "Projects Delivered" },
-                { value: "12+", label: "Industry Awards" },
-              ].map((stat) => (
+              {stats.map((stat: { label: string; value: string }) => (
                 <motion.div
                   key={stat.label}
                   className={styles.team__statItem}
@@ -362,23 +352,25 @@ export const ServicesPage = () => {
               }}
             >
               <motion.h2 className={styles.cta__title} variants={fadeInUp}>
-                Ready to Work With Us?
-                <span className="text-gradient"> Let's Talk</span>
+                {t("servicesPage.ctaTitle")}
+                <span className="text-gradient">
+                  {" "}
+                  {t("servicesPage.ctaTitleGradient")}
+                </span>
               </motion.h2>
               <motion.p className={styles.cta__subtitle} variants={fadeInUp}>
-                Whether you need a full-scale campaign or a creative
-                consultation — we're just a message away.
+                {t("servicesPage.ctaSubtitle")}
               </motion.p>
               <motion.div className={styles.cta__actions} variants={fadeInUp}>
                 <Button variant="primary" size="lg" asMotion>
-                  Start a Project
+                  {t("servicesPage.startProject")}
                 </Button>
                 <Button
                   variant="ghost"
                   size="lg"
                   onClick={() => navigate("/contact")}
                 >
-                  Contact Us
+                  {t("servicesPage.contactUs")}
                 </Button>
               </motion.div>
             </motion.div>

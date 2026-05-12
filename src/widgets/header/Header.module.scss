@@ -108,6 +108,34 @@
     }
   }
 
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    @include m.laptop {
+      display: none;
+    }
+  }
+
+  &__burgerOpen {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    span {
+      &:nth-child(1) {
+        transform: rotate(45deg) translateY(10px);
+      }
+      &:nth-child(3) {
+        transform: rotate(-45deg) translateY(-10px);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+    }
+  }
+
   &__burger {
     display: none;
     flex-direction: column;
@@ -265,5 +293,11 @@
     &:hover {
       color: v.$color-text-primary;
     }
+  }
+
+  &__switcher {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 }

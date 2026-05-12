@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Container } from "../../shared/ui/Container";
 import { Section } from "../../shared/ui/Section";
 import { staggerContainer, staggerItem, cardHover } from "../../shared/lib";
@@ -13,43 +14,38 @@ interface Service {
 const services: Service[] = [
   {
     icon: "./Servise/Icon Container.svg",
-    title: "Expertise That Drives Results",
-    description:
-      "Our team of seasoned professionals brings years of experience and deep industry expertise to every project. We don’t just follow trends — we set them.",
+    title: "services.servicesList.0.title",
+    description: "services.servicesList.0.description",
   },
   {
     icon: "./Servise/Icon Container-1.svg",
-    title: "Tailored Business Solutions",
-    description:
-      "We understand that every business is unique. That’s why our solutions are fully customized to your goals, audience, and market reality.",
+    title: "services.servicesList.1.title",
+    description: "services.servicesList.1.description",
   },
   {
     icon: "./Servise/Icon Container-2.svg",
-    title: "Cutting-Edge Web Design",
-    description:
-      "Leave a lasting impression on your audience with our top‑notch web design services. Modern, fast, and built to convert.",
+    title: "services.servicesList.2.title",
+    description: "services.servicesList.2.description",
   },
   {
     icon: "./Servise/Icon Container-3.svg",
-    title: "Mobile-First Approach",
-    description:
-      "In today’s mobile‑centric world, we prioritize responsive, mobile‑first design to ensure your website looks and works perfectly everywhere.",
+    title: "services.servicesList.3.title",
+    description: "services.servicesList.3.description",
   },
   {
     icon: "./Servise/Icon Container-4.svg",
-    title: "Marketing Strategies",
-    description:
-      "Our data‑driven marketing strategies allow us to target the right audience with precision — maximizing reach, engagement, and ROI.",
+    title: "services.servicesList.4.title",
+    description: "services.servicesList.4.description",
   },
   {
     icon: "./Servise/Icon Container-5.svg",
-    title: "Search Engine Optimization",
-    description:
-      "Boost your online visibility with our expert SEO techniques. From local SEO to global reach, we get you found.",
+    title: "services.servicesList.5.title",
+    description: "services.servicesList.5.description",
   },
 ];
 
 export const Services = () => {
+  const { t } = useTranslation();
   return (
     <Section id="services" className={styles.services}>
       <Container>
@@ -61,14 +57,11 @@ export const Services = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className={styles.services__title}>
-            Reasons to Choose R&B Agency <br />
-            <span className="text-gradient">For Your Digital Journey</span>
+            {t("services.title")} <br />
+            <span className="text-gradient">{t("services.titleGradient")}</span>
           </h2>
           <p className={styles.services__subtitle}>
-            Partnering with R&B means more than just advertising. Expect
-            increased brand visibility, deeper customer engagement, and
-            measurable ROI. Every solution we craft is tailored to your business
-            DNA — for results that last.
+            {t("services.subtitle")}
           </p>
         </motion.div>
 
@@ -96,12 +89,12 @@ export const Services = () => {
                 <span className={styles.serviceCard__icon}>
                   <img src={service.icon} alt="" width={80} />
                 </span>
-                <h3 className={styles.serviceCard__title}>{service.title}</h3>
+                <h3 className={styles.serviceCard__title}>{t(service.title)}</h3>
                 <p className={styles.serviceCard__description}>
-                  {service.description}
+                  {t(service.description)}
                 </p>
                 <button className={styles.serviceCard__btn}>
-                  <span>Learn More</span>
+                  <span>{t("services.learnMore")}</span>
                   <svg
                     width="68"
                     height="48"

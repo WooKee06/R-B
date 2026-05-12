@@ -10,8 +10,16 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(231, 206, 92, 0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(231, 206, 92, 0.03) 0%, transparent 50%);
+      radial-gradient(
+        ellipse 80% 60% at 50% 30%,
+        rgba(231, 206, 92, 0.06) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 80% 80%,
+        rgba(231, 206, 92, 0.03) 0%,
+        transparent 50%
+      );
     pointer-events: none;
   }
 
@@ -92,7 +100,6 @@
     width: 88px;
     height: 88px;
     border-radius: $radius-lg;
-    background: rgba(231, 206, 92, 0.06);
     transition: all $transition-normal;
 
     .serviceCard:hover & {
@@ -142,8 +149,16 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 70% 50% at 30% 40%, rgba(231, 206, 92, 0.04) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 60% at 70% 60%, rgba(231, 206, 92, 0.02) 0%, transparent 50%);
+      radial-gradient(
+        ellipse 70% 50% at 30% 40%,
+        rgba(231, 206, 92, 0.04) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 50% 60% at 70% 60%,
+        rgba(231, 206, 92, 0.02) 0%,
+        transparent 50%
+      );
     pointer-events: none;
   }
 

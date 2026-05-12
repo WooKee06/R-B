@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Container } from "../../shared/ui/Container";
@@ -70,6 +71,7 @@ const sliderSlides: Testimonial[] = [
 ];
 
 export const Testimonials = () => {
+  const { t } = useTranslation();
   const [prevEl, setPrevEl] = useState<HTMLButtonElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLButtonElement | null>(null);
 
@@ -83,10 +85,9 @@ export const Testimonials = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.2 }}
         >
-          <h2 className={styles.testimonials__title}>What they say about us</h2>
+          <h2 className={styles.testimonials__title}>{t("testimonials.title")}</h2>
           <p className={styles.articles__subtitle}>
-            Work in the IT field includes Web Design, UI/UX Design, Branding and
-            Shopify Development
+            {t("testimonials.subtitle")}
           </p>
         </motion.div>
         <img src={AUBg} alt="" className={styles.aboutUsBg} width={350} />

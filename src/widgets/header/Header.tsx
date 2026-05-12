@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 import { useStores } from "../../app/providers/MobxProvider";
 import { Container } from "../../shared/ui/Container";
 import { Button } from "../../shared/ui/Button";
+import { LanguageSwitcher } from "../../shared/ui/LanguageSwitcher/LanguageSwitcher";
 import { useScroll } from "../../shared/hooks";
 import styles from "./Header.module.scss";
 import Logo from "../../../public/logo.svg";
@@ -28,44 +30,45 @@ interface NavLink {
   };
 }
 
-const navLinks: NavLink[] = [
-  {
-    label: "Agency",
-    href: "/#portfolio",
-    dropdown: {
-      popularServices: [
-        {
-          label: "TikTok Ads Management",
-          href: "/#services",
-          description: "запуск и оптимизация рекламных кампаний",
-        },
-        {
-          label: "Influencer Marketing",
-          href: "/#services",
-          description: "коллаборации с блогерами",
-        },
-      ],
-      links: [
-        { label: "About Us", href: "/#about" },
-        { label: "Our Team", href: "/#team" },
-        { label: "Case Studies", href: "/case-study" },
-        { label: "FAQ", href: "/#faq" },
-      ],
-    },
-  },
-  { label: "Services", href: "/services" },
-  { label: "Case study", href: "/case-study" },
-  { label: "Reviews", href: "/reviews" },
-  { label: "Contact", href: "/contact" },
-];
-
 const MotionLink = motion.create(Link);
 
 export const Header = observer(() => {
   const { uiStore } = useStores();
+  const { t } = useTranslation();
   const scrolled = useScroll();
   const [activeLink, setActiveLink] = useState("");
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
+
+  const navLinks: NavLink[] = [
+    {
+      label: t("header.nav.agency"),
+      href: "/#portfolio",
+      dropdown: {
+        popularServices: [
+          {
+            label: t("header.dropdown.tiktokAds"),
+            href: "/#services",
+            description: t("header.dropdown.tiktokAdsDesc"),
+          },
+          {
+            label: t("header.dropdown.influencerMarketing"),
+            href: "/#services",
+            description: t("header.dropdown.influencerMarketingDesc"),
+          },
+        ],
+        links: [
+          { label: t("header.dropdown.aboutUs"), href: "/#about" },
+          { label: t("header.dropdown.ourTeam"), href: "/#team" },
+          { label: t("header.dropdown.caseStudies"), href: "/case-study" },
+          { label: t("header.dropdown.faq"), href: "/#faq" },
+        ],
+      },
+    },
+    { label: t("header.nav.services"), href: "/services" },
+    { label: t("header.nav.caseStudy"), href: "/case-study" },
+    { label: t("header.nav.reviews"), href: "/reviews" },
+    { label: t("header.nav.contact"), href: "/contact" },
+  ];
 
   const handleNavClick = (href: string) => {
     setActiveLink(href);
@@ -180,12 +183,19 @@ export const Header = observer(() => {
               </ul>
             </nav>
 
-            <Button variant="border" size="sm" className={styles.header__cta}>
-              Connect
-            </Button>
+            <div className={styles.header__actions}>
+              <LanguageSwitcher />
+              <Button variant="border" size="sm" className={styles.header__cta}>
+                {t("header.connect")}
+              </Button>
+            </div>
 
             <button
-              className={styles.header__burger}
+              className={
+                uiStore.isMobileMenuOpen
+                  ? styles.header__burgerOpen
+                  : styles.header__burger
+              }
               aria-label={uiStore.isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={uiStore.isMobileMenuOpen}
               onClick={uiStore.toggleMobileMenu}
@@ -202,9 +212,9 @@ export const Header = observer(() => {
         {uiStore.isMobileMenuOpen && (
           <motion.div
             className={styles.mobileMenu}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, zIndex: "-1" }}
+            animate={{ opacity: 1, zIndex: "20" }}
+            exit={{ opacity: 0, zIndex: "-1" }}
             transition={{ duration: 0.3 }}
           >
             <motion.nav
@@ -225,6 +235,12 @@ export const Header = observer(() => {
                   {link.label}
                 </MotionLink>
               ))}
+              <motion.div
+                variants={mobileItemVariants}
+                className={styles.mobileMenu__switcher}
+              >
+                <LanguageSwitcher />
+              </motion.div>
               <motion.div variants={mobileItemVariants}>
                 <Button
                   variant="primary"
@@ -232,7 +248,7 @@ export const Header = observer(() => {
                   fullWidth
                   onClick={uiStore.closeMobileMenu}
                 >
-                  Get in Touch
+                  {t("header.getInTouch")}
                 </Button>
               </motion.div>
             </motion.nav>

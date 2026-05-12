@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Header } from "../../widgets/header";
 import { Footer } from "../../widgets/footer";
 import { Container } from "../../shared/ui/Container";
@@ -28,7 +29,7 @@ const contactInfo = [
         />
       </svg>
     ),
-    label: "Office",
+    labelKey: "contactPage.office",
     value: "2972 Westheimer Rd. Santa Ana, Illinois 85486",
     href: "https://maps.google.com/?q=2972+Westheimer+Rd+Santa+Ana+Illinois+85486",
   },
@@ -44,7 +45,7 @@ const contactInfo = [
         />
       </svg>
     ),
-    label: "Phone",
+    labelKey: "contactPage.phone",
     value: "(406) 555-0120",
     href: "tel:+14065550120",
   },
@@ -67,7 +68,7 @@ const contactInfo = [
         />
       </svg>
     ),
-    label: "Email",
+    labelKey: "contactPage.email",
     value: "retsu-rb-agency@gmail.com",
     href: "mailto:retsu-rb-agency@gmail.com",
   },
@@ -98,6 +99,7 @@ const socials = [
 
 export const ContactPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -113,11 +115,10 @@ export const ContactPage = () => {
               variants={staggerContainer}
             >
               <motion.h1 className={styles.hero__title} variants={fadeInUp}>
-                Let's <span className="text-gradient">Talk</span>
+                {t("contactPage.heroTitle")} <span className="text-gradient">{t("contactPage.heroTitleGradient")}</span>
               </motion.h1>
               <motion.p className={styles.hero__subtitle} variants={fadeInUp}>
-                Have a project in mind? We'd love to hear about it. Reach out
-                and let's create something great together.
+                {t("contactPage.heroSubtitle")}
               </motion.p>
             </motion.div>
           </Container>
@@ -134,18 +135,16 @@ export const ContactPage = () => {
                 variants={staggerContainer}
               >
                 <motion.h2 className={styles.info__title} variants={fadeInUp}>
-                  Contact Information
+                  {t("contactPage.contactTitle")}
                 </motion.h2>
                 <motion.p className={styles.info__text} variants={fadeInUp}>
-                  We're always open to new opportunities and collaborations.
-                  Whether you need a full-scale campaign or a creative
-                  consultation — we're just a message away.
+                  {t("contactPage.contactText")}
                 </motion.p>
 
                 <motion.div className={styles.info__list} variants={fadeInUp}>
                   {contactInfo.map((item) => (
                     <a
-                      key={item.label}
+                      key={item.labelKey}
                       href={item.href}
                       className={styles.info__item}
                       target={
@@ -160,7 +159,7 @@ export const ContactPage = () => {
                       <span className={styles.info__icon}>{item.icon}</span>
                       <div className={styles.info__itemContent}>
                         <span className={styles.info__itemLabel}>
-                          {item.label}
+                          {t(item.labelKey)}
                         </span>
                         <span className={styles.info__itemValue}>
                           {item.value}
@@ -171,7 +170,7 @@ export const ContactPage = () => {
                 </motion.div>
 
                 <motion.div className={styles.socials} variants={fadeInUp}>
-                  <span className={styles.socials__label}>Follow Us</span>
+                  <span className={styles.socials__label}>{t("contactPage.followUs")}</span>
                   <div className={styles.socials__list}>
                     {socials.map((s) => (
                       <a
@@ -232,7 +231,7 @@ export const ContactPage = () => {
                       )
                     }
                   >
-                    Open in Maps
+                    {t("contactPage.openInMaps")}
                   </Button>
                 </div>
               </motion.div>
@@ -253,23 +252,22 @@ export const ContactPage = () => {
               }}
             >
               <motion.h2 className={styles.cta__title} variants={fadeInUp}>
-                Prefer a Quick Call Back?
-                <span className="text-gradient"> We're Ready</span>
+                {t("contactPage.ctaTitle")}
+                <span className="text-gradient"> {t("contactPage.ctaTitleGradient")}</span>
               </motion.h2>
               <motion.p className={styles.cta__subtitle} variants={fadeInUp}>
-                Drop your details and our team will get back to you within 24
-                hours.
+                {t("contactPage.ctaSubtitle")}
               </motion.p>
               <motion.div className={styles.cta__actions} variants={fadeInUp}>
                 <Button variant="primary" size="lg" asMotion>
-                  Schedule a Call
+                  {t("contactPage.scheduleCall")}
                 </Button>
                 <Button
                   variant="ghost"
                   size="lg"
                   onClick={() => navigate("/case-study")}
                 >
-                  View Our Work
+                  {t("contactPage.viewWork")}
                 </Button>
               </motion.div>
             </motion.div>

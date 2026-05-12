@@ -1,0 +1,213 @@
+{
+  "header": {
+    "nav": {
+      "agency": "Agency",
+      "services": "Services",
+      "caseStudy": "Case Study",
+      "reviews": "Reviews",
+      "contact": "Contact"
+    },
+    "dropdown": {
+      "tiktokAds": "TikTok Ads Management",
+      "tiktokAdsDesc": "launch and optimization of ad campaigns",
+      "influencerMarketing": "Influencer Marketing",
+      "influencerMarketingDesc": "collaborations with bloggers",
+      "aboutUs": "About Us",
+      "ourTeam": "Our Team",
+      "caseStudies": "Case Studies",
+      "faq": "FAQ"
+    },
+    "connect": "Connect",
+    "getInTouch": "Get in Touch"
+  },
+  "hero": {
+    "createdBy": "Created by:",
+    "retsuCreator": "Retsu @Tik Tok Creator",
+    "submittedOn": "Submitted on:",
+    "date": "May 4, 2026",
+    "title1": "Stay ahead with our",
+    "title2": "innovative approach",
+    "subtitle": "An award-winning full-service agency. R&B Agency combines high-end digital marketing, bold design, and conversion-driven development — with a sharp focus on understanding your brand and audience first.",
+    "scheduleCall": "Schedule Call",
+    "viewCaseStudy": "View Case Study",
+    "activeUsers": "Active Users Worldwide",
+    "usersCount": "1.350 C"
+  },
+  "services": {
+    "title": "Reasons to Choose R&B Agency",
+    "titleGradient": "For Your Digital Journey",
+    "subtitle": "Partnering with R&B means more than just advertising. Expect increased brand visibility, deeper customer engagement, and measurable ROI. Every solution we craft is tailored to your business DNA — for results that last.",
+    "servicesList": [
+      {
+        "title": "Expertise That Drives Results",
+        "description": "Our team of seasoned professionals brings years of experience and deep industry expertise to every project. We don't just follow trends — we set them."
+      },
+      {
+        "title": "Tailored Business Solutions",
+        "description": "We understand that every business is unique. That's why our solutions are fully customized to your goals, audience, and market reality."
+      },
+      {
+        "title": "Cutting-Edge Web Design",
+        "description": "Leave a lasting impression on your audience with our top‑notch web design services. Modern, fast, and built to convert."
+      },
+      {
+        "title": "Mobile-First Approach",
+        "description": "In today's mobile‑centric world, we prioritize responsive, mobile‑first design to ensure your website looks and works perfectly everywhere."
+      },
+      {
+        "title": "Marketing Strategies",
+        "description": "Our data‑driven marketing strategies allow us to target the right audience with precision — maximizing reach, engagement, and ROI."
+      },
+      {
+        "title": "Search Engine Optimization",
+        "description": "Boost your online visibility with our expert SEO techniques. From local SEO to global reach, we get you found."
+      }
+    ],
+    "learnMore": "Learn More"
+  },
+  "portfolio": {
+    "title": "Our Services",
+    "subtitle": "We help you build a modern, user-friendly website with clean design and great SEO."
+  },
+  "articles": {
+    "title": "Growth, recognition, and return on investment: not just quantitative indicators",
+    "subtitle": "An award-winning full-service agency. R&B Agency combines high-end digital marketing, bold design, and conversion-driven development — with a sharp focus on understanding your brand and audience first.",
+    "seeMore": "See more",
+    "viewAll": "View All Articles"
+  },
+  "testimonials": {
+    "title": "What they say about us",
+    "subtitle": "Work in the IT field includes Web Design, UI/UX Design, Branding and Shopify Development"
+  },
+  "cta": {
+    "title": "Ready to Dominate Your",
+    "titleGradient": "Online Space?",
+    "subtitle": "Let's discuss how we can help you achieve your goals with a tailored digital strategy.",
+    "startProject": "Start a Project"
+  },
+  "footer": {
+    "description": "An award-winning full-service agency. R&B Agency combines high-end digital marketing, bold design, and conversion-driven development — with a sharp focus on understanding your brand and audience first.",
+    "columns": {
+      "Navigation": "Navigation",
+      "Licence": "Licence",
+      "Contact": "Contact"
+    },
+    "links": {
+      "Navigation": ["Service", "Agency", "Case Study", "Resource", "Contact"],
+      "Licence": ["Privacy Policy", "Copyright", "Email Address"],
+      "Contact": ["(406) 555-0120", "Hey@boostim.com", "2972 Westheimer Rd. Santa Ana, Illinois 85486", "Privacy Policy"]
+    },
+    "tiktok": "Tik Tok",
+    "telegram": "Telegramm",
+    "copyright": "© 2026 Nexus Digital Agency. All rights reserved."
+  },
+  "caseStudyPage": {
+    "heroTitle": "Case",
+    "heroTitleGradient": "Studies",
+    "heroSubtitle": "Real projects, real results. Explore how we helped brands transform their digital presence and achieve measurable growth.",
+    "stats": [
+      { "label": "Projects Delivered" },
+      { "label": "Avg. ROAS" },
+      { "label": "Team Members" },
+      { "label": "Industry Awards" }
+    ],
+    "categories": ["All", "Branding", "Influencer Marketing", "Performance", "Web Design", "UA", "SMM"],
+    "viewCaseStudy": "View Case Study",
+    "noResults": "No case studies found in this category.",
+    "challenge": "The Challenge",
+    "solution": "The Solution",
+    "results": "The Results",
+    "ctaTitle": "Ready to Build Your",
+    "ctaTitleGradient": "Success Story?",
+    "ctaSubtitle": "Let's discuss how we can help you achieve your goals with a tailored digital strategy.",
+    "startProject": "Start a Project",
+    "backHome": "Back to Home"
+  },
+  "contactPage": {
+    "heroTitle": "Let's",
+    "heroTitleGradient": "Talk",
+    "heroSubtitle": "Have a project in mind? We'd love to hear about it. Reach out and let's create something great together.",
+    "contactTitle": "Contact Information",
+    "contactText": "We're always open to new opportunities and collaborations. Whether you need a full-scale campaign or a creative consultation — we're just a message away.",
+    "office": "Office",
+    "phone": "Phone",
+    "email": "Email",
+    "followUs": "Follow Us",
+    "openInMaps": "Open in Maps",
+    "ctaTitle": "Prefer a Quick Call Back?",
+    "ctaTitleGradient": "We're Ready",
+    "ctaSubtitle": "Drop your details and our team will get back to you within 24 hours.",
+    "scheduleCall": "Schedule a Call",
+    "viewWork": "View Our Work"
+  },
+  "reviewsPage": {
+    "heroTitle": "Client",
+    "heroTitleGradient": "Reviews",
+    "heroSubtitle": "Real feedback from real clients. See why businesses trust us with their digital growth.",
+    "stats": [
+      { "label": "Avg. Rating" },
+      { "label": "Reviews" },
+      { "label": "Satisfaction" },
+      { "label": "Clients" }
+    ],
+    "all": "All",
+    "noResults": "No reviews found for this rating.",
+    "ctaTitle": "Share Your",
+    "ctaTitleGradient": "Experience",
+    "ctaSubtitle": "Your feedback helps us grow and serve you better. We'd love to hear about your journey with us.",
+    "leaveReview": "Leave a Review",
+    "backHome": "Back to Home"
+  },
+  "servicesPage": {
+    "heroTitle": "Our",
+    "heroTitleGradient": "Services",
+    "heroSubtitle": "From strategy to execution — we deliver end-to-end digital solutions that drive real business growth.",
+    "servicesList": [
+      {
+        "title": "Expertise That Drives Results",
+        "description": "Our team of seasoned professionals brings years of experience and deep industry expertise to every project.",
+        "details": "We don't just follow trends — we set them. From strategy through execution, every deliverable is backed by data, refined by creativity, and built for impact."
+      },
+      {
+        "title": "Tailored Business Solutions",
+        "description": "We understand that every business is unique.",
+        "details": "Our solutions are fully customized to your goals, audience, and market reality. No templates, no shortcuts — just a strategy that fits your DNA."
+      },
+      {
+        "title": "Cutting-Edge Web Design",
+        "description": "Leave a lasting impression with top-notch web design.",
+        "details": "Modern, fast, and built to convert. Every pixel is placed with purpose — blending aesthetics with performance for an experience users love."
+      },
+      {
+        "title": "Mobile-First Approach",
+        "description": "We prioritize responsive, mobile-first design.",
+        "details": "In today's mobile-centric world, your website needs to look and work perfectly everywhere. We build for every screen, without compromise."
+      },
+      {
+        "title": "Marketing Strategies",
+        "description": "Data-driven marketing that targets with precision.",
+        "details": "Maximizing reach, engagement, and ROI. Our campaigns are built on real insights, tested relentlessly, and optimized for what works."
+      },
+      {
+        "title": "Search Engine Optimization",
+        "description": "Boost your online visibility with expert SEO.",
+        "details": "From local SEO to global reach, we get you found. Technical audits, content strategy, and link-building that drives sustainable organic growth."
+      }
+    ],
+    "meetFounders": "Meet the Founders",
+    "teamTitle": "The Minds Behind",
+    "teamTitleGradient": "R&B Agency",
+    "teamSubtitle": "Two founders, one vision — to reshape digital marketing with creativity, data, and relentless ambition.",
+    "stats": [
+      { "label": "Years Experience" },
+      { "label": "Team Members" },
+      { "label": "Projects Delivered" },
+      { "label": "Industry Awards" }
+    ],
+    "ctaTitle": "Ready to Work With Us?",
+    "ctaTitleGradient": "Let's Talk",
+    "ctaSubtitle": "Whether you need a full-scale campaign or a creative consultation — we're just a message away.",
+    "startProject": "Start a Project",
+    "contactUs": "Contact Us"
+  }
+}

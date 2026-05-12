@@ -1,0 +1,80 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
+.switcher {
+  position: relative;
+  z-index: v.$z-tooltip;
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-family: v.$font-display;
+    font-size: v.$font-size-body-sm;
+    font-weight: v.$font-weight-medium;
+    color: v.$color-text-secondary;
+    background: transparent;
+    border: 1px solid v.$color-glass-border;
+    border-radius: v.$radius-md;
+    cursor: pointer;
+    transition: all v.$transition-fast;
+
+    &:hover {
+      color: v.$color-text-primary;
+      border-color: v.$color-border-hover;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+  }
+
+  &__arrow {
+    transition: transform v.$transition-fast;
+
+    &[data-open="true"] {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    min-width: 100%;
+    background: rgba(0, 0, 0, 0.589);
+    backdrop-filter: blur(12px);
+    border: 1px solid v.$color-glass-border;
+    border-radius: v.$radius-md;
+    overflow: hidden;
+    box-shadow: v.$shadow-lg;
+  }
+
+  &__option {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    font-family: v.$font-display;
+    font-size: v.$font-size-body-sm;
+    font-weight: v.$font-weight-medium;
+    color: v.$color-text-secondary;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: all v.$transition-fast;
+    white-space: nowrap;
+
+    &:hover {
+      color: v.$color-text-primary;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    &[data-active="true"] {
+      color: v.$color-accent-primary;
+    }
+  }
+}

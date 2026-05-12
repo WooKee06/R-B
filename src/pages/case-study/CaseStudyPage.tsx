@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, animate, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Header } from "../../widgets/header";
 import { Footer } from "../../widgets/footer";
 import { Container } from "../../shared/ui/Container";
@@ -190,30 +191,22 @@ const caseStudies: CaseStudy[] = [
   },
 ];
 
-const categories = [
-  "All",
-  "Branding",
-  "Influencer Marketing",
-  "Performance",
-  "Web Design",
-  "UA",
-  "SMM",
-];
-
-const stats = [
-  { value: "150+", label: "Projects Delivered" },
-  { value: "8x", label: "Avg. ROAS" },
-  { value: "50+", label: "Team Members" },
-  { value: "12+", label: "Industry Awards" },
-];
-
 export const CaseStudyPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null);
 
+  const categories = t("caseStudyPage.categories", { returnObjects: true }) as string[];
+  const stats = (t("caseStudyPage.stats", { returnObjects: true }) as { label: string }[]).map(
+    (s: { label: string }, i: number) => ({
+      ...s,
+      value: ["150+", "8x", "50+", "12+"][i],
+    })
+  );
+
   const filteredCases =
-    activeFilter === "All"
+    activeFilter === categories[0]
       ? caseStudies
       : caseStudies.filter((c) => c.category === activeFilter);
 
@@ -231,14 +224,13 @@ export const CaseStudyPage = () => {
               variants={staggerContainer}
             >
               <motion.h1 className={styles.hero__title} variants={fadeInUp}>
-                Case <span className="text-gradient">Studies</span>
+                {t("caseStudyPage.heroTitle")} <span className="text-gradient">{t("caseStudyPage.heroTitleGradient")}</span>
               </motion.h1>
               <motion.p className={styles.hero__subtitle} variants={fadeInUp}>
-                Real projects, real results. Explore how we helped brands
-                transform their digital presence and achieve measurable growth.
+                {t("caseStudyPage.heroSubtitle")}
               </motion.p>
               <motion.div className={styles.hero__stats} variants={fadeInUp}>
-                {stats.map((stat) => (
+                {stats.map((stat: { label: string; value: string }) => (
                   <div key={stat.label} className={styles.hero__statItem}>
                     <AnimatedCounter value={stat.value} className={styles.hero__statValue} />
                     <span className={styles.hero__statLabel}>{stat.label}</span>
@@ -258,7 +250,7 @@ export const CaseStudyPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              {categories.map((cat) => (
+              {categories.map((cat: string) => (
                 <button
                   key={cat}
                   className={styles.cases__filterBtn}
@@ -298,7 +290,7 @@ export const CaseStudyPage = () => {
                       />
                       <div className={styles.caseCard__overlay}>
                         <span className={styles.caseCard__view}>
-                          View Case Study
+                          {t("caseStudyPage.viewCaseStudy")}
                         </span>
                       </div>
                     </div>
@@ -349,7 +341,7 @@ export const CaseStudyPage = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                No case studies found in this category.
+                {t("caseStudyPage.noResults")}
               </motion.p>
             )}
           </Container>
@@ -419,7 +411,7 @@ export const CaseStudyPage = () => {
                 <div className={styles.modal__body}>
                   <div className={styles.modal__section}>
                     <h4 className={styles.modal__sectionTitle}>
-                      The Challenge
+                      {t("caseStudyPage.challenge")}
                     </h4>
                     <p className={styles.modal__text}>
                       {selectedCase.challenge}
@@ -427,14 +419,14 @@ export const CaseStudyPage = () => {
                   </div>
 
                   <div className={styles.modal__section}>
-                    <h4 className={styles.modal__sectionTitle}>The Solution</h4>
+                    <h4 className={styles.modal__sectionTitle}>{t("caseStudyPage.solution")}</h4>
                     <p className={styles.modal__text}>
                       {selectedCase.solution}
                     </p>
                   </div>
 
                   <div className={styles.modal__section}>
-                    <h4 className={styles.modal__sectionTitle}>The Results</h4>
+                    <h4 className={styles.modal__sectionTitle}>{t("caseStudyPage.results")}</h4>
                     <div className={styles.modal__results}>
                       {selectedCase.results.map((r) => (
                         <div key={r.label} className={styles.modal__resultCard}>
@@ -475,23 +467,22 @@ export const CaseStudyPage = () => {
               }}
             >
               <motion.h2 className={styles.cta__title} variants={fadeInUp}>
-                Ready to Build Your
-                <span className="text-gradient"> Success Story?</span>
+                {t("caseStudyPage.ctaTitle")}
+                <span className="text-gradient"> {t("caseStudyPage.ctaTitleGradient")}</span>
               </motion.h2>
               <motion.p className={styles.cta__subtitle} variants={fadeInUp}>
-                Let's discuss how we can help you achieve your goals with a
-                tailored digital strategy.
+                {t("caseStudyPage.ctaSubtitle")}
               </motion.p>
               <motion.div className={styles.cta__actions} variants={fadeInUp}>
                 <Button variant="primary" size="lg" asMotion>
-                  Start a Project
+                  {t("caseStudyPage.startProject")}
                 </Button>
                 <Button
                   variant="ghost"
                   size="lg"
                   onClick={() => navigate("/")}
                 >
-                  Back to Home
+                  {t("caseStudyPage.backHome")}
                 </Button>
               </motion.div>
             </motion.div>

@@ -1,20 +1,14 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Container } from '../../shared/ui/Container';
 import styles from './Footer.module.scss';
 import Logo from '../../../public/logo.svg';
 
-const footerLinks = {
-  Navigation: ['Service', 'Agency', 'Case Study', 'Resource', 'Contact'],
-  Licence: ['Privacy Policy', 'Copyright', 'Email Address'],
-  Contact: [
-    '(406) 555-0120',
-    'Hey@boostim.com',
-    '2972 Westheimer Rd. Santa Ana, Illinois 85486 ',
-    'Privacy Policy',
-  ],
-};
-
 export const Footer = () => {
+  const { t } = useTranslation();
+
+  const columnKeys = ['Navigation', 'Licence', 'Contact'] as const;
+
   return (
     <motion.footer
       className={styles.footer}
@@ -30,18 +24,15 @@ export const Footer = () => {
               <img src={Logo} alt="" />
             </a>
             <p className={styles.footer__description}>
-              An award-winning full-service agency. R&B Agency combines high-end
-              digital marketing, bold design, and conversion-driven development
-              — with a sharp focus on understanding your brand and audience
-              first.
+              {t('footer.description')}
             </p>
           </div>
 
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title} className={styles.footer__column}>
-              <h4 className={styles.footer__columnTitle}>{title}</h4>
+          {columnKeys.map((key) => (
+            <div key={key} className={styles.footer__column}>
+              <h4 className={styles.footer__columnTitle}>{t(`footer.columns.${key}`)}</h4>
               <ul className={styles.footer__links}>
-                {links.map((link) => (
+                {(t(`footer.links.${key}`, { returnObjects: true }) as string[]).map((link: string) => (
                   <li key={link}>
                     <a href="#" className={styles.footer__link}>
                       {link}
@@ -54,13 +45,13 @@ export const Footer = () => {
         </div>
 
         <div className={styles.footer__bottom}>
-          <p>© 2026 Nexus Digital Agency. All rights reserved.</p>
+          <p>{t('footer.copyright')}</p>
           <div className={styles.footer__socials}>
             <a href="#" aria-label="Twitter">
-              Tik Tok
+              {t('footer.tiktok')}
             </a>
             <a href="#" aria-label="LinkedIn">
-              Telegramm
+              {t('footer.telegram')}
             </a>
           </div>
         </div>

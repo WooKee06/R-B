@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Container } from "../../shared/ui/Container";
 import { Section } from "../../shared/ui/Section";
 import { staggerContainer, staggerItem } from "../../shared/lib";
@@ -53,6 +54,7 @@ const projects: Project[] = [
 ];
 
 export const Portfolio = () => {
+  const { t } = useTranslation();
   return (
     <Section id="portfolio" className={styles.portfolio}>
       <Container>
@@ -63,10 +65,9 @@ export const Portfolio = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className={styles.portfolio__title}>Our Services</h2>
+          <h2 className={styles.portfolio__title}>{t("portfolio.title")}</h2>
           <p className={styles.portfolio__subtitle}>
-            Ahelp you to build website company that is modern, user friendly,
-            good CEO, and Clean design
+            {t("portfolio.subtitle")}
           </p>
         </motion.div>
 
