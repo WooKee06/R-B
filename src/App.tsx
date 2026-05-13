@@ -7,6 +7,7 @@ import { CaseStudyPage } from "./pages/case-study/CaseStudyPage";
 import { ContactPage } from "./pages/contact/ContactPage";
 import { ReviewsPage } from "./pages/reviews/ReviewsPage";
 import { ServicesPage } from "./pages/services/ServicesPage";
+import { VideoPromo } from "./widgets/videoPromo";
 import "./shared/styles/reset.scss";
 import "./shared/styles/global.scss";
 
@@ -26,6 +27,7 @@ export const App = () => {
   return (
     <MobxProvider>
       <PageTitleUpdater />
+      <VideoPromo />
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="case-study" element={<CaseStudyPage />} />

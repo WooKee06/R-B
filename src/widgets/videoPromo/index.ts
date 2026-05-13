@@ -1,0 +1,1 @@
+export { VideoPromo } from "./VideoPromo";

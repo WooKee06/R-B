@@ -85,6 +85,9 @@
     "subtitle": "Let's discuss how we can help you achieve your goals with a tailored digital strategy.",
     "startProject": "Start a Project"
   },
+  "videoPromo": {
+    "description": "We create digital products that make a difference."
+  },
   "footer": {
     "description": "An award-winning full-service agency. R&B Agency combines high-end digital marketing, bold design, and conversion-driven development — with a sharp focus on understanding your brand and audience first.",
     "columns": {
@@ -95,7 +98,12 @@
     "links": {
       "Navigation": ["Service", "Agency", "Case Study", "Resource", "Contact"],
       "Licence": ["Privacy Policy", "Copyright", "Email Address"],
-      "Contact": ["(406) 555-0120", "Hey@boostim.com", "2972 Westheimer Rd. Santa Ana, Illinois 85486", "Privacy Policy"]
+      "Contact": [
+        "(406) 555-0120",
+        "Hey@boostim.com",
+        "2972 Westheimer Rd. Santa Ana, Illinois 85486",
+        "Privacy Policy"
+      ]
     },
     "tiktok": "Tik Tok",
     "telegram": "Telegramm",
@@ -111,7 +119,15 @@
       { "label": "Team Members" },
       { "label": "Industry Awards" }
     ],
-    "categories": ["All", "Branding", "Influencer Marketing", "Performance", "Web Design", "UA", "SMM"],
+    "categories": [
+      "All",
+      "Branding",
+      "Influencer Marketing",
+      "Performance",
+      "Web Design",
+      "UA",
+      "SMM"
+    ],
     "viewCaseStudy": "View Case Study",
     "noResults": "No case studies found in this category.",
     "challenge": "The Challenge",
