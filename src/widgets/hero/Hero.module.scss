@@ -165,14 +165,18 @@
 
   &__decorBottomRight {
     position: absolute;
-    bottom: -70px;
-    right: -120px;
+    bottom: -170px;
+    right: 80px;
     width: 400px;
     height: 404px;
     pointer-events: none;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+
+    @include m.desktop {
+      right: -50px;
+    }
 
     @include m.tablet {
       width: 260px;
