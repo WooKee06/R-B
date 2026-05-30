@@ -1,4 +1,4 @@
-import BgHero from "/Hero/bg-hero.png";
+import BgHero from "../../../../public/home/HeroBackground/HeroBackground.png";
 import styles from "./HeroBackground.module.scss";
 
 export const HeroBackground = () => {

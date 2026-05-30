@@ -1,19 +1,19 @@
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { Button } from '../../shared/ui/Button';
-import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Button } from "../../shared/ui/Button";
+import { useNavigate } from "react-router-dom";
 import {
   decorBottomRightVariants,
   decorTopLeftVariants,
   fadeInUp,
   scrollHintVariants,
   staggerContainer,
-} from '../../shared/lib';
-import { HeroBackground } from './HeroBackground/HeroBackground';
-import DecorBottomRightImg from '/Hero/decorBottomRight.png';
-import DecorTopLeftImg from '/Hero/decorTopLeft.png';
-import LiquidGlass from '@/shared/ui/LiquidGlass/LiquidGlass';
-import styles from './Hero.module.scss';
+} from "../../shared/lib";
+import { HeroBackground } from "./HeroBackground/HeroBackground";
+import DecorBottomRightImg from "../../../public/home/decorBottomRight.png";
+import DecorTopLeftImg from "../../../public/home/decorTopLeft.png";
+import LiquidGlass from "@/shared/ui/LiquidGlass/LiquidGlass";
+import styles from "./Hero.module.scss";
 
 export const Hero = () => {
   const navigate = useNavigate();
@@ -35,41 +35,41 @@ export const Hero = () => {
         >
           <LiquidGlass
             style={{
-              padding: '20px 60px',
-              display: 'flex',
-              gap: '70px',
-              width: 'max-content',
-              position: 'relative',
-              right: '-270px',
-              top: '40px',
+              padding: "20px 60px",
+              display: "flex",
+              gap: "70px",
+              width: "max-content",
+              position: "relative",
+              right: "-270px",
+              top: "40px",
             }}
             className={styles.hero__decorTopLeftContent}
           >
             <section className={styles.glassInfo}>
-              <span>{t('hero.createdBy')}</span>
-              <h3>{t('hero.retsuCreator')}</h3>
+              <span>{t("hero.createdBy")}</span>
+              <h3>{t("hero.retsuCreator")}</h3>
             </section>
             <section className={styles.glassInfo}>
-              <span>{t('hero.submittedOn')}</span>
-              <h3>{t('hero.date')}</h3>
+              <span>{t("hero.submittedOn")}</span>
+              <h3>{t("hero.date")}</h3>
             </section>
           </LiquidGlass>
         </motion.div>
 
         <div className={styles.title}>
           <motion.h2 className={styles.hero__title} variants={fadeInUp}>
-            {t('hero.title1')}
+            {t("hero.title1")}
           </motion.h2>
           <motion.h2 className={styles.hero__title} variants={fadeInUp}>
-            {t('hero.title2')}
+            {t("hero.title2")}
           </motion.h2>
         </div>
         <motion.p className={styles.hero__subtitle} variants={fadeInUp}>
-          {t('hero.subtitle')}
+          {t("hero.subtitle")}
         </motion.p>
         <motion.div className={styles.hero__actions} variants={fadeInUp}>
           <Button variant="primary" size="lg" asMotion>
-            {t('hero.scheduleCall')}
+            {t("hero.scheduleCall")}
             <svg
               width="24"
               height="24"
@@ -97,9 +97,9 @@ export const Hero = () => {
             variant="glass"
             size="lg"
             asMotion
-            onClick={() => navigate('/case-study')}
+            onClick={() => navigate("/case-study")}
           >
-            {t('hero.viewCaseStudy')}
+            {t("hero.viewCaseStudy")}
           </Button>
         </motion.div>
 
@@ -110,13 +110,13 @@ export const Hero = () => {
         >
           <LiquidGlass
             style={{
-              padding: '30px',
-              display: 'flex',
-              gap: '70px',
-              width: 'max-content',
-              position: 'relative',
-              left: '-100px',
-              bottom: '-230px',
+              padding: "30px",
+              display: "flex",
+              gap: "70px",
+              width: "max-content",
+              position: "relative",
+              left: "-100px",
+              bottom: "-230px",
             }}
             className={styles.hero__decorBottomRightContent}
           >
@@ -126,10 +126,11 @@ export const Hero = () => {
                 <li className={styles.cimage}></li>
                 <li className={styles.cimage}></li>
 
-                <small>{t('hero.usersCount')}</small>
+                <small>{t("hero.usersCount")}</small>
               </ul>
               <h3>
-                <div></div>{t('hero.activeUsers')}
+                <div></div>
+                {t("hero.activeUsers")}
               </h3>
             </section>
           </LiquidGlass>
@@ -144,12 +145,12 @@ export const Hero = () => {
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '8px',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
           <span className={styles.hero__scrollLine} />
