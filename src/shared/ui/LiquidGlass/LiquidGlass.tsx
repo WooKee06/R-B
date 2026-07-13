@@ -1,33 +1,15 @@
 import s from './LiquidGlass.module.scss';
-import { motion } from 'framer-motion';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 
-interface LiquidGlassProps {
-  children?: React.ReactNode;
-  style?: React.CSSProperties;
+interface LiquidGlassProps extends HTMLMotionProps<"div"> {
   className?: string;
-  animate?: any;
-  initial?: any;
-  transition?: any;
-  whileHover?: any;
 }
 
-const LiquidGlass = ({
-  children,
-  style,
-  className = "",
-  animate,
-  initial,
-  transition,
-  whileHover,
-}: LiquidGlassProps) => {
+const LiquidGlass = ({ className = "", children, ...motionProps }: LiquidGlassProps) => {
   return (
     <>
       <motion.div
-        initial={initial}
-        transition={transition}
-        animate={animate}
-        whileHover={whileHover}
-        style={style}
+        {...motionProps}
         className={`${s.glassContainer} ${className}`}
       >
         {children}

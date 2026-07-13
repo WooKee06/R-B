@@ -15,6 +15,7 @@ export const MobxProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useStores = () => {
   const context = useContext(StoreContext);
   if (!context) {

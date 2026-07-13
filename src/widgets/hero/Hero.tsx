@@ -28,23 +28,13 @@ export const Hero = () => {
         initial="hidden"
         animate="visible"
       >
+        {/* Top-left decorative element with glass info */}
         <motion.div
           className={styles.hero__decorTopLeft}
           style={{ backgroundImage: `url(${DecorTopLeftImg})` }}
           variants={decorTopLeftVariants}
         >
-          <LiquidGlass
-            style={{
-              padding: "20px 60px",
-              display: "flex",
-              gap: "70px",
-              width: "max-content",
-              position: "relative",
-              right: "-270px",
-              top: "40px",
-            }}
-            className={styles.hero__decorTopLeftContent}
-          >
+          <LiquidGlass className={styles.hero__decorTopLeftContent}>
             <section className={styles.glassInfo}>
               <span>{t("hero.createdBy")}</span>
               <h3>{t("hero.retsuCreator")}</h3>
@@ -56,6 +46,7 @@ export const Hero = () => {
           </LiquidGlass>
         </motion.div>
 
+        {/* Main title */}
         <div className={styles.title}>
           <motion.h2 className={styles.hero__title} variants={fadeInUp}>
             {t("hero.title1")}
@@ -64,9 +55,12 @@ export const Hero = () => {
             {t("hero.title2")}
           </motion.h2>
         </div>
+
         <motion.p className={styles.hero__subtitle} variants={fadeInUp}>
           {t("hero.subtitle")}
         </motion.p>
+
+        {/* CTA buttons */}
         <motion.div className={styles.hero__actions} variants={fadeInUp}>
           <Button variant="primary" size="lg" asMotion>
             {t("hero.scheduleCall")}
@@ -103,23 +97,13 @@ export const Hero = () => {
           </Button>
         </motion.div>
 
+        {/* Bottom-right decorative element with glass info */}
         <motion.div
           className={styles.hero__decorBottomRight}
           style={{ backgroundImage: `url(${DecorBottomRightImg})` }}
           variants={decorBottomRightVariants}
         >
-          <LiquidGlass
-            style={{
-              padding: "30px",
-              display: "flex",
-              gap: "70px",
-              width: "max-content",
-              position: "relative",
-              left: "-100px",
-              bottom: "-230px",
-            }}
-            className={styles.hero__decorBottomRightContent}
-          >
+          <LiquidGlass className={styles.hero__decorBottomRightContent}>
             <section className={styles.glassInfo}>
               <ul>
                 <li></li>
@@ -137,6 +121,7 @@ export const Hero = () => {
         </motion.div>
       </motion.div>
 
+      {/* Scroll hint */}
       <motion.div
         className={styles.hero__scrollHint}
         variants={scrollHintVariants}
