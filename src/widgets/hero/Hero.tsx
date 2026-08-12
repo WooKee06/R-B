@@ -3,15 +3,13 @@ import { useTranslation } from "react-i18next";
 import { Button } from "../../shared/ui/Button";
 import { useNavigate } from "react-router-dom";
 import {
-  decorTopLeftVariants,
+
   fadeInUp,
   scrollHintVariants,
   staggerContainer,
 } from "../../shared/lib";
 import { HeroBackground } from "./HeroBackground/HeroBackground";
 
-import DecorTopLeftImg from "../../../public/home/decorTopLeft.png";
-import LiquidGlass from "@/shared/ui/LiquidGlass/LiquidGlass";
 import styles from "./Hero.module.scss";
 
 export const Hero = () => {

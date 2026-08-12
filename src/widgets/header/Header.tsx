@@ -37,7 +37,6 @@ export const Header = observer(() => {
   const { t } = useTranslation();
   const scrolled = useScroll();
   const [activeLink, setActiveLink] = useState("");
-  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
 
   const navLinks: NavLink[] = [
     {
@@ -95,10 +94,6 @@ export const Header = observer(() => {
                   <li
                     key={link.href}
                     className={styles.header__navItem}
-                    onMouseEnter={() =>
-                      link.dropdown && setHoveredDropdown(link.href)
-                    }
-                    onMouseLeave={() => setHoveredDropdown(null)}
                   >
                     <Link
                       to={link.href}
