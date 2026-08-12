@@ -3,14 +3,13 @@ import { useTranslation } from "react-i18next";
 import { Button } from "../../shared/ui/Button";
 import { useNavigate } from "react-router-dom";
 import {
-  decorBottomRightVariants,
   decorTopLeftVariants,
   fadeInUp,
   scrollHintVariants,
   staggerContainer,
 } from "../../shared/lib";
 import { HeroBackground } from "./HeroBackground/HeroBackground";
-import DecorBottomRightImg from "../../../public/home/decorBottomRight.png";
+
 import DecorTopLeftImg from "../../../public/home/decorTopLeft.png";
 import LiquidGlass from "@/shared/ui/LiquidGlass/LiquidGlass";
 import styles from "./Hero.module.scss";
@@ -29,7 +28,7 @@ export const Hero = () => {
         animate="visible"
       >
         {/* Top-left decorative element with glass info */}
-        <motion.div
+        {/* <motion.div
           className={styles.hero__decorTopLeft}
           style={{ backgroundImage: `url(${DecorTopLeftImg})` }}
           variants={decorTopLeftVariants}
@@ -44,7 +43,7 @@ export const Hero = () => {
               <h3>{t("hero.date")}</h3>
             </section>
           </LiquidGlass>
-        </motion.div>
+        </motion.div> */}
 
         {/* Main title */}
         <div className={styles.title}>
@@ -98,27 +97,7 @@ export const Hero = () => {
         </motion.div>
 
         {/* Bottom-right decorative element with glass info */}
-        <motion.div
-          className={styles.hero__decorBottomRight}
-          style={{ backgroundImage: `url(${DecorBottomRightImg})` }}
-          variants={decorBottomRightVariants}
-        >
-          <LiquidGlass className={styles.hero__decorBottomRightContent}>
-            <section className={styles.glassInfo}>
-              <ul>
-                <li></li>
-                <li className={styles.cimage}></li>
-                <li className={styles.cimage}></li>
-
-                <small>{t("hero.usersCount")}</small>
-              </ul>
-              <h3>
-                <div></div>
-                {t("hero.activeUsers")}
-              </h3>
-            </section>
-          </LiquidGlass>
-        </motion.div>
+   
       </motion.div>
 
       {/* Scroll hint */}

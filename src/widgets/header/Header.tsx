@@ -107,7 +107,7 @@ export const Header = observer(() => {
                       onClick={() => handleNavClick(link.href)}
                     >
                       {link.label}
-                      {link.dropdown && (
+                      {/* {link.dropdown && (
                         <span
                           className={styles.header__navArrow}
                           data-open={hoveredDropdown === link.href}
@@ -127,10 +127,10 @@ export const Header = observer(() => {
                             />
                           </svg>
                         </span>
-                      )}
+                      )} */}
                     </Link>
 
-                    {link.dropdown && (
+                    {/* {link.dropdown && (
                       <AnimatePresence>
                         {hoveredDropdown === link.href && (
                           <motion.div
@@ -177,14 +177,13 @@ export const Header = observer(() => {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    )}
+                    )} */}
                   </li>
                 ))}
               </ul>
             </nav>
 
             <div className={styles.header__actions}>
-              <LanguageSwitcher />
               <Button variant="border" size="sm" className={styles.header__cta}>
                 {t("header.connect")}
               </Button>
